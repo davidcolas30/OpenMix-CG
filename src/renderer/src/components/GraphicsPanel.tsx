@@ -546,12 +546,12 @@ function panelStyle(mode: GraphicsPanelMode): React.CSSProperties {
     background: 'linear-gradient(180deg, rgba(12, 18, 28, 0.96), rgba(18, 26, 38, 0.94))',
     border: '1px solid rgba(124, 145, 173, 0.18)',
     boxShadow: '0 16px 36px rgba(2, 8, 23, 0.32)',
-    minHeight: 0,
+    minHeight: mode === 'workspace' ? '100%' : 0,
     minWidth: 0,
     overflow: mode === 'workspace' ? 'visible' : 'hidden',
     boxSizing: 'border-box',
     margin: 0,
-    alignSelf: 'stretch'
+    alignSelf: mode === 'workspace' ? 'flex-start' : 'stretch'
   }
 }
 
