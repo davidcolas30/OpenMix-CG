@@ -18,7 +18,7 @@
   <img alt="Plataforma validada" src="https://img.shields.io/badge/plataforma%20validada-macOS-64748b.svg">
 </p>
 
-OpenMix-CG es una aplicación de escritorio para realizar producciones de vídeo ligeras con varias fuentes, grafismos y grabación local. Reproduce el flujo habitual de realización en directo con **Preview**, **Program**, **CUT**, **AUTO**, multiview y control de grafismos, orientado a estudiantes, podcasts, eventos locales, pequeñas productoras y flujos de Mobile Journalism.
+OpenMix-CG es una aplicación de escritorio para realizar producciones de vídeo ligeras con varias fuentes, grafismos y grabación local. Reproduce el flujo habitual de realización en directo con **Preview**, **Program**, **CUT**, **AUTO**, multiview y control de grafismos, orientado a estudiantes, podcasts, eventos locales y pequeñas productoras.
 
 <p align="center">
   <img src="resources/screenshots/openmix-cg-mixer-illustrative.png" alt="Mixer principal de OpenMix-CG con fuentes ficticias" width="900">
