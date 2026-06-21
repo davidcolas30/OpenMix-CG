@@ -271,17 +271,17 @@ Cuando aparezca un concepto nuevo, conviene decidir primero a qué módulo perte
 
 Después, si el término cambia la forma de entender el sistema, se actualiza este índice para que siga sirviendo como puerta de entrada.
 
-## Alcance actual
+## Alcance de la documentación
 
 Estos documentos cubren lo ya construido en Fase 0, Fase 1, Fase 2 y Fase 3, el arranque arquitectónico de Fase 4 para el motor de grafismo, la integración real de overlays con el mixer, la primera implementación del camino de plantillas nativas especializadas, las transiciones básicas del mixer y el cierre funcional del MVP de Fase 5 en el módulo de output.
 
-En el estado actual, Fase 5 puede darse por cerrada a nivel MVP: grabación local del Program con grafismo superpuesto, ajustes persistentes de grabación, ruta dedicada de mayor resolución para REC y chequeo de espacio libre antes de iniciar. La reestructuración posterior de Fase 1 mueve la escritura de REC al plano de media nativo: Electron conserva el control de inicio/parada y estado, pero ya no recibe los frames BGRA 1080p para grabar. El chequeo se hace sobre la carpeta real de destino, así que una ruta montada en disco externo funciona como destino válido mientras el volumen siga presente. Si esa carpeta desaparece, el sistema falla con un mensaje claro en lugar de recrearla silenciosamente en otra unidad.
+En el alcance documentado, Fase 5 puede darse por cerrada a nivel MVP: grabación local del Program con grafismo superpuesto, ajustes persistentes de grabación, ruta dedicada de mayor resolución para REC y chequeo de espacio libre antes de iniciar. La reestructuración posterior de Fase 1 mueve la escritura de REC al plano de media nativo: Electron conserva el control de inicio/parada y estado, pero ya no recibe los frames BGRA 1080p para grabar. El chequeo se hace sobre la carpeta real de destino, así que una ruta montada en disco externo funciona como destino válido mientras el volumen siga presente. Si esa carpeta desaparece, el sistema falla con un mensaje claro en lugar de recrearla silenciosamente en otra unidad.
 
-En el estado actual del producto, Sync Buffer RTP/NTP, vídeos locales, atajos configurables, multiview reducida y REC nativo con audio local quedan cerrados a nivel MVP. La pestaña de audio local diagnóstico permite onda, pico, delay sugerido y referencia visual nativa; ese delay puede aplicarse a la primera rama de audio local de REC nativo bajo guarda. Queda como mejora futura extender el modelo a mezcla live de Program/streaming si el producto lo necesita. La investigación de shared texture se mantiene como línea experimental independiente.
+En la versión documentada del producto, Sync Buffer RTP/NTP, vídeos locales, atajos configurables, multiview reducida y REC nativo con audio local quedan cerrados a nivel MVP. La pestaña de audio local diagnóstico permite onda, pico, delay sugerido y referencia visual nativa; ese delay puede aplicarse a la primera rama de audio local de REC nativo bajo guarda. Como mejora futura se plantea extender el modelo a mezcla live de Program/streaming si el producto lo necesita. La investigación de shared texture se mantiene como línea experimental independiente.
 
 Tras la fase de pulido, el producto se nombra de forma unificada como
 **OpenMix-CG** en `package.json`, Electron Builder, la ventana principal y los
-assets de marca versionados. Además, la refactorizacion interna reciente separa
+assets de marca versionados. Además, la refactorizacion interna separa
 el addon nativo y varios servicios por dominio sin cambiar la frontera
 arquitectónica: Electron/React siguen enviando control, y GStreamer sigue
 conservando el plano de media.

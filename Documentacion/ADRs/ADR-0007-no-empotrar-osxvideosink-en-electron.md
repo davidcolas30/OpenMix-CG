@@ -70,6 +70,6 @@ OPENMIX_NATIVE_MONITOR_SINK=osxvideosink
 ## Relación con OpenMix-CG
 
 Esta decisión refuerza la regla del proyecto: el plano de media no debe viajar
-por IPC. En el estado actual, `glimagesink` queda como opción protegida para
+por IPC. En la ruta validada, `glimagesink` queda como opción protegida para
 monitores nativos en macOS, mientras `osxvideosink` se conserva solo como A/B
 explicito o reproducción de incidencias.

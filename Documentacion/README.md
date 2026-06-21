@@ -22,7 +22,7 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
 - [Notas/empaquetado-macos-fase-1.md](Notas/empaquetado-macos-fase-1.md): estado
   del empaquetado macOS con GStreamer externo.
 
-## Estado actual resumido
+## Estado de la versión
 
 El proyecto tiene un MVP funcional con:
 
@@ -41,13 +41,13 @@ El proyecto tiene un MVP funcional con:
   palmada/claqueta; el delay calculado ya puede aplicarse a la rama de audio
   local de REC nativo bajo guarda;
 - REC nativo con audio local validado a nivel MVP: MP4 reproducible con vídeo
-  1080p en movimiento y audio AAC local. El ajuste fino de milisegundos queda
-  para la prueba de claqueta.
+  1080p en movimiento y audio AAC local. El ajuste fino de milisegundos se
+  reserva para la prueba de claqueta.
 - empaquetado macOS fase 1 validado como `.app` de prueba con GStreamer externo
   como prerrequisito; la ruta de desarrollo con `pnpm dev` sigue intacta.
 - nombre de producto y ventana unificados como **OpenMix-CG**, con assets de
   marca versionados para UI, documentación y empaquetado.
-- refactor interno reciente del addon nativo y servicios de UI/REC/grafismos:
+- refactor interno del addon nativo y servicios de UI/REC/grafismos:
   el comportamiento público no cambia, pero el código queda dividido por
   dominios para facilitar mantenimiento, pruebas y revisión técnica.
 

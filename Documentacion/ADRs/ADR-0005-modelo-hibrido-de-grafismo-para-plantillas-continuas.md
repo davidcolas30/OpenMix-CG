@@ -7,7 +7,7 @@ Fecha: 2026-04-23
 
 Tras estabilizar la Fase 4 previa, OpenMix-CG ya dispone de un motor de grafismo funcional basado en `BrowserWindow` oculta, preview-first y composición nativa del overlay del mixer mediante `appsrc` de GStreamer.
 
-Las mediciones recientes separan dos comportamientos claramente distintos:
+Las mediciones de validación separan dos comportamientos distintos:
 
 - los rótulos con animaciones cortas de entrada y salida consumen poco y, una vez quietos, casi no añaden coste sostenido
 - las plantillas con movimiento continuo, en especial el ticker, mantienen un consumo estructural alto incluso sin el mixer iniciado
@@ -76,14 +76,14 @@ La aceptación de esta ADR queda respaldada por una primera implementación real
 
 La primera plantilla nativa no intenta ser un motor universal de grafismo, sino un renderer especializado y acotado.
 
-Su objetivo es reproducir el ticker básico actual con estas propiedades:
+Su objetivo es reproducir el ticker básico con estas propiedades:
 
 - barra inferior con etiqueta a la izquierda y cuerpo desplazable a la derecha
 - texto continuo en bucle horizontal
 - velocidad editable por duración del ciclo
 - animaciones cortas de entrada y salida
 - soporte de alpha para composición sobre Preview y Program
-- mismo flujo operativo que una plantilla actual desde la UI del realizador
+- mismo flujo operativo que el resto de plantillas desde la UI del realizador
 
 ## Regla de alcance
 

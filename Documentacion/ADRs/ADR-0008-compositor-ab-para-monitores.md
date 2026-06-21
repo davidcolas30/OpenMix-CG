@@ -41,7 +41,7 @@ vídeo base:
 
 ## Consecuencias
 
-- La ruta actual `compositor` sigue siendo el valor por defecto.
+- La ruta `compositor` sigue siendo el valor por defecto.
 - La ruta `selector` sigue disponible como referencia barata sin grafismos.
 - `ab-compositor` permite medir si el coste del compositor viene del número de
   entradas live o del propio elemento aunque solo tenga una o dos entradas.

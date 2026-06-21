@@ -6,7 +6,7 @@ Este módulo explica como OpenMix-CG incorpora grafismo editable sin convertir l
 
 La idea no es dibujar overlays a mano desde React, sino cargar plantillas preparadas por un diseñador y permitir que el realizador edite solo el contenido necesario desde la aplicación.
 
-Este documento conserva la explicación de arranque de Fase 4, pero también recoge el estado actual: el grafismo ya no es solo preview-first. OpenMix-CG tiene integración real con el mixer mediante frames con alpha hacia GStreamer, un slot GFX de previsualización y un modelo híbrido para overlays continuos.
+Este documento conserva la explicación de arranque de Fase 4, pero también recoge el estado de la versión: el grafismo ya no es solo preview-first. OpenMix-CG tiene integración real con el mixer mediante frames con alpha hacia GStreamer, un slot GFX de previsualización y un modelo híbrido para overlays continuos.
 
 ## Decision de arranque de Fase 4
 
@@ -17,7 +17,7 @@ El arranque de este módulo siguio una estrategia **preview-first**:
 - **plano de control**: IPC tipado entre Renderer, Preload y Main
 - **objetivo de esa iteración**: descubrir plantillas, cargarlas, editar campos y disparar `show`/`hide`
 
-Esa decisión fue histórica y sigue siendo importante para entender el orden de construcción. La composición real sobre el mixer ya existe en el estado actual.
+Esa decisión fue histórica y sigue siendo importante para entender el orden de construcción. La composición real sobre el mixer ya existe en la versión implementada.
 
 ## Idea central
 
@@ -127,9 +127,9 @@ En esa iteración se dejo fuera, de manera deliberada:
 
 Esto no fue una carencia accidental. Fue una decisión para estabilizar primero la frontera entre plantilla, servicio y UI antes de abrir el camino de media real.
 
-## Estado actual del camino de grafismo
+## Estado del camino de grafismo
 
-El estado vivo del módulo es:
+El estado implementado del módulo es:
 
 - Las plantillas HTML/CSS/JS se cargan en `BrowserWindow` offscreen controladas
   desde Main, no como componentes React ad hoc. En el modo estable, cada

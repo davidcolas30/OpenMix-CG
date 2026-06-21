@@ -115,7 +115,7 @@ El plano de control puede pasar por Electron IPC o por WebSocket. El plano de me
 
 ## Flujo de arranque de la aplicación
 
-Cuando se abre OpenMix-CG, hoy ocurre esto:
+Cuando se abre OpenMix-CG, el arranque sigue este flujo:
 
 1. Electron crea la ventana principal.
 2. Se carga el preload para exponer `window.openMix` al renderer.
@@ -198,23 +198,25 @@ Sirve para conectar móviles sin instalar una app nativa, negociando la sesión 
 
 Sirve para traducir el lenguaje técnico del software al lenguaje que se usa durante la operación audiovisual.
 
-## Lo que aún no está cerrado del todo
+## Líneas de evolución técnica
 
-Aunque la arquitectura ya es funcional para demo local, quedan puntos importantes apuntados como trabajo futuro:
+Aunque la arquitectura ya es funcional para producción local de prueba, se
+mantienen puntos importantes como evolución técnica:
 
 - **Ajuste fino de audio por claqueta**: REC nativo ya puede grabar audio local
-  y aplicar delay real a su rama GStreamer. Queda validar el flujo operativo de
-  palmada/claqueta para fijar el signo y la magnitud del desfase residual, y
-  decidir una futura mezcla live con `audiomixer` para Program/streaming.
+  y aplicar delay real a su rama GStreamer. La validación operativa de
+  palmada/claqueta servirá para fijar el signo y la magnitud del desfase
+  residual, y para decidir una futura mezcla live con `audiomixer` para
+  Program/streaming.
 - **Grafismo por textura compartida**: spike aislado para reducir copias CPU de los overlays HTML sin bloquear el roadmap principal.
 
-Ya quedan integrados en la arquitectura principal el Sync Buffer Manager RTP/NTP
+La arquitectura principal integra el Sync Buffer Manager RTP/NTP
 para multicámara, los vídeos locales como fuentes reproducibles del mixer, la
 multiview nativa reducida y el panel de atajos configurables. También existe una
 primera pestaña de audio en modo diagnóstico local: permite elegir entrada, ver
 medidor/onda, activar una referencia visual nativa de Preview, detectar un pico
 de palmada y calcular un delay sugerido. Ese delay ya puede aplicarse a la rama
-de audio local de REC nativo; la mezcla live de Program/streaming queda como
+de audio local de REC nativo; la mezcla live de Program/streaming se mantiene como
 evolución posterior. Los clips se cargan desde Main, entran en GStreamer como media
 nativa y se controlan desde React solo mediante IPC de control. Los atajos
 siguen la misma regla: son una forma de expresar acciones existentes del

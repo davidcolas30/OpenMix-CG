@@ -77,7 +77,7 @@ flowchart LR
 
 ## Requisitos
 
-La ruta validada actualmente es macOS con Apple Silicon y GStreamer instalado en el sistema.
+La ruta validada es macOS con Apple Silicon y GStreamer instalado en el sistema.
 
 - Node.js y pnpm.
 - Xcode Command Line Tools, necesarias para compilar el addon nativo.
@@ -113,7 +113,7 @@ Para generar un `.dmg` de prueba:
 pnpm run package:mac:dmg
 ```
 
-La fase de empaquetado actual usa GStreamer como dependencia externa: el equipo donde se ejecute la app debe tener una instalación compatible de GStreamer.
+La fase de empaquetado validada usa GStreamer como dependencia externa: el equipo donde se ejecute la app debe tener una instalación compatible de GStreamer.
 
 ## Documentación
 
@@ -130,7 +130,7 @@ La fase de empaquetado actual usa GStreamer como dependencia externa: el equipo 
 
 El proyecto está en estado de MVP funcional para producción local en red propia. Están validados el mixer, la conexión de cámaras móviles, grafismos, vídeos locales, multiview, grabación local y una primera integración de audio local para REC.
 
-Quedan como líneas de evolución principales:
+Líneas de evolución principales:
 
 - empaquetar GStreamer dentro de la distribución o en un instalador propio;
 - validar rutas completas para Windows y Linux;

@@ -8,12 +8,12 @@ La idea no es abandonar el motor HTML, sino decidir con criterio que familias de
 
 ## Punto de partida real
 
-El sistema actual ya combina dos capas distintas:
+El sistema combina dos capas distintas:
 
 - generación visual del grafismo en `BrowserWindow` oculta si la plantilla es HTML
 - composición del overlay del mixer en la ruta nativa de GStreamer
 
-Eso significa que hoy el overlay del mixer ya es nativo en la composición, pero no necesariamente en la generación del grafismo.
+Eso significa que el overlay del mixer ya es nativo en la composición, pero no necesariamente en la generación del grafismo.
 
 En las mediciones del ticker se ha observado este patrón:
 
@@ -32,7 +32,7 @@ Esto indica que Chromium no está repintando casi todo el frame en cada tick. El
 
 La propuesta para OpenMix-CG es un **modelo híbrido**.
 
-Importante: esta evolución ya no es solo teórica. El runtime actual ya soporta una primera plantilla `format: native` con `rendererId: ticker-v1`, mientras que el resto del módulo sigue funcionando con el camino HTML/offscreen integrado como overlay real en GStreamer.
+Importante: esta evolución ya no es solo teórica. El runtime soporta una primera plantilla `format: native` con `rendererId: ticker-v1`, mientras que el resto del módulo sigue funcionando con el camino HTML/offscreen integrado como overlay real en GStreamer.
 
 ### HTML se mantiene para
 
@@ -62,7 +62,7 @@ El modelo híbrido es más coherente con las mediciones reales del proyecto.
 
 ## Primera plantilla nativa implementada: ticker-native-v1
 
-La primera plantilla nativa es la traduccion controlada del ticker básico actual a un renderer especializado.
+La primera plantilla nativa es la traducción controlada del ticker básico a un renderer especializado.
 
 ### Objetivos funcionales
 
@@ -149,7 +149,7 @@ Campos clave del manifiesto:
 
 ### Estado runtime usado por ticker-v1
 
-El renderer recibe el mismo tipo de información semántica que hoy reciben las plantillas HTML:
+El renderer recibe el mismo tipo de información semántica que las plantillas HTML:
 
 - `isVisible`
 - `previewActive`

@@ -1,7 +1,7 @@
 # Instalación y ejecución
 
 Esta guía resume cómo preparar OpenMix-CG para desarrollo local y cómo generar una
-aplicación `.app` de prueba en macOS. La distribución validada actualmente usa
+aplicación `.app` de prueba en macOS. La distribución validada usa
 GStreamer instalado en el sistema como prerrequisito externo.
 
 ## Requisitos
@@ -132,7 +132,7 @@ pnpm run build:native
 ### La cámara móvil no conecta
 
 El modo validado es red local. El móvil y el ordenador deben estar en la misma
-red y el navegador del móvil debe poder abrir la URL generada por el QR.
+red y el navegador del móvil debe poder abrir la URL mostrada en el QR.
 
 ### La app empaquetada no funciona en otro Mac
 
@@ -141,11 +141,11 @@ La app generada con este método no es autocontenida. Además de copiar
 
 ## Estado de distribución
 
-La ruta validada actualmente es:
+La ruta validada es:
 
 - desarrollo con `pnpm dev`;
 - empaquetado macOS de prueba con GStreamer externo;
 - firma ad-hoc para validación local.
 
-Queda como evolución futura empaquetar GStreamer dentro del bundle o distribuir
-un instalador propio con firma y notarización completas.
+Como evolución futura se plantea empaquetar GStreamer dentro del bundle o
+distribuir un instalador propio con firma y notarización completas.

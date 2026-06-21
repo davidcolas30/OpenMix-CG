@@ -91,11 +91,11 @@ Es una dirección posible de conectividad para la sesión WebRTC. El intercambio
 
 ### STUN
 
-Ayuda a descubrir direcciones de red utilizables durante la negociación ICE. En el modo local actual actúa como apoyo, pero muchas veces la LAN ya permite candidates host suficientes.
+Ayuda a descubrir direcciones de red utilizables durante la negociación ICE. En el modo local implementado actúa como apoyo, pero muchas veces la LAN ya permite candidates host suficientes.
 
 ### TURN
 
-Es un relay para escenarios donde la conexión directa no es posible. Es importante en contribución remota, pero todavía no forma parte del MVP local que está implementado hoy.
+Es un relay para escenarios donde la conexión directa no es posible. Es importante en contribución remota, pero todavía no forma parte del MVP local implementado.
 
 ### Expiración de tokens
 
@@ -107,7 +107,7 @@ Comprueba que el WebSocket viene de la propia página móvil servida por OpenMix
 
 ### Filtrado de red local
 
-Limita las conexiones a loopback o direcciones privadas de LAN. Refuerza que el modo actual es **Local Studio** y no un servicio abierto a Internet.
+Limita las conexiones a loopback o direcciones privadas de LAN. Refuerza que el modo validado es **Local Studio** y no un servicio abierto a Internet.
 
 ### Certificado TLS autofirmado
 
@@ -137,11 +137,11 @@ La idea importante para la arquitectura es que cada cámara móvil no entra como
 
 ## Control de calidad monitor vs REC
 
-El mismo móvil no debe comportarse igual cuando solo se está monitorizando que cuando se está grabando. La configuración móvil actual se inserta en el QR y se vuelve autoritaria desde el servidor al hacer `join`, para evitar que una pestaña antigua o un token reutilizado transmitan con parámetros obsoletos.
+El mismo móvil no debe comportarse igual cuando solo se está monitorizando que cuando se está grabando. La configuración móvil validada se inserta en el QR y se vuelve autoritaria desde el servidor al hacer `join`, para evitar que una pestaña antigua o un token reutilizado transmitan con parámetros obsoletos.
 
 Además, el HTML del cliente móvil arranca con defaults defensivos ligeros (`quality=auto`, `bitrate=cap`, audio/preview local/cadencia/stats apagados). Estos defaults no sustituyen al QR ni al `welcome`: solo evitan que una URL incompleta, una recarga vieja o una divergencia temporal antes del `welcome` reactive el perfil histórico pesado.
 
-El comportamiento por defecto actual es:
+El comportamiento por defecto validado es:
 
 - `profile=fullhd`: se solicita 1920x1080 cuando el dispositivo lo permite, porque REC debe poder ser 1080p real y no un reescalado.
 - `quality=auto`: arranca protegiendo la cadencia y puede mantener o recuperar 1080p cuando las estadísticas indican margen.
@@ -174,7 +174,7 @@ El Sync Buffer Manager se coloca después de recibir y decodificar WebRTC, pero 
 - No mueve vídeo por IPC, porque todo ocurre dentro de GStreamer.
 - No se mezcla con el spike de grafismo por textura compartida.
 
-La versión actual tiene dos capas. La primera normaliza el PTS de cada peer WebRTC al `running-time` del mixer padre y suaviza jitter con una cola posterior a decode. Esa normalización es clave cuando la segunda cámara entra tarde: su timeline RTP local no debe parecer "antiguo" frente al compositor que ya estaba funcionando. Además, si una cámara llega con discontinuidades grandes de PTS, el manager las cuenta como `corrected` y mantiene una cadencia continua. La segunda capa, una compuerta `identity sync=true`, queda apagada por defecto: en pruebas reales con dos cámaras redujo la salida a unos 3-4fps y llenó la cola, congelando multiview y Preview. Retiming solo se arma por defecto con al menos dos cámaras WebRTC que ya hayan entregado frames decodificados (`OPENMIX_SYNC_BUFFER_MIN_PEERS=2`), de modo que una única cámara o una segunda cámara a medio negociar mantienen bypass real: cola sin límite/leaky, clock apagado, `single-segment=false`, buffers sin modificar y sin log periódico del manager desde el hilo de streaming. `OPENMIX_SYNC_BUFFER_CLOCK=on` se conserva como guarda experimental para investigar backpressure, no como ruta operativa.
+La implementación tiene dos capas. La primera normaliza el PTS de cada peer WebRTC al `running-time` del mixer padre y suaviza jitter con una cola posterior a decode. Esa normalización es clave cuando la segunda cámara entra tarde: su timeline RTP local no debe parecer "antiguo" frente al compositor que ya estaba funcionando. Además, si una cámara llega con discontinuidades grandes de PTS, el manager las cuenta como `corrected` y mantiene una cadencia continua. La segunda capa, una compuerta `identity sync=true`, queda apagada por defecto: en pruebas reales con dos cámaras redujo la salida a unos 3-4fps y llenó la cola, congelando multiview y Preview. Retiming solo se arma por defecto con al menos dos cámaras WebRTC que ya hayan entregado frames decodificados (`OPENMIX_SYNC_BUFFER_MIN_PEERS=2`), de modo que una única cámara o una segunda cámara a medio negociar mantienen bypass real: cola sin límite/leaky, clock apagado, `single-segment=false`, buffers sin modificar y sin log periódico del manager desde el hilo de streaming. `OPENMIX_SYNC_BUFFER_CLOCK=on` se conserva como guarda experimental para investigar backpressure, no como ruta operativa.
 
 La capa de compensación NTP usa la información del `rtpjitterbuffer` interno de `webrtcbin`. Cuando llegan RTCP Sender Reports, GStreamer emite `handle-sync` con campos como `sr-ext-rtptime` y `sr-ntpnstime`; OpenMix-CG usa esa relación para asociar paquetes RTP con una referencia NTP. Si además GStreamer adjunta `GstReferenceTimestampMeta`, también se aprovecha. El registro del jitterbuffer es perezoso porque las caps de `media=video` pueden no estar listas durante `deep-element-added`; por eso se engancha el candidato y se decide si es vídeo cuando las caps aparecen. La lectura RTP/NTP se mantiene dormida con una sola cámara por defecto y se activa al llegar al umbral multicámara. Con esa referencia se estima la edad de captura de cada cámara y, si `OPENMIX_SYNC_BUFFER_NTP_APPLY=on`, se retrasa la que llegue antes mediante la cola decodificada, manteniendo `identity sync=true` apagado salvo diagnóstico.
 
@@ -187,7 +187,7 @@ offsetAB = offsetB - offsetA
 
 Con ese offset, el receptor puede retrasar la cámara que llega antes para que el compositor compare frames que representan el mismo instante de captura. Esta capacidad existe conceptualmente en WebRTC/RTP; lo que OpenMix-CG aporta frente a soluciones como OBS + VDO.Ninja es que la sincronización se implementa dentro del receptor/mixer local, no como una combinación de URLs externas.
 
-## Lo que ya está resuelto y lo que sigue pendiente
+## Estado del módulo
 
 ### Ya resuelto
 
@@ -206,14 +206,14 @@ Con ese offset, el receptor puede retrasar la cámara que llega antes para que e
   Preview/Program nativos, multiview nativa reducida y 1080p cuando el emisor lo
   permite.
 
-### Sigue pendiente
+### Evolución pendiente
 
 #### Robustez RTP/NTP fuera del perfil validado
 
-El perfil actual ya funciona con dos cámaras locales y NTP aplicado. Lo que
-sigue pendiente no es demostrar que el mecanismo exista, sino endurecerlo:
+El perfil validado funciona con dos cámaras locales y NTP aplicado. El siguiente
+paso no es demostrar que el mecanismo exista, sino endurecerlo:
 probar 2-3 móviles reales de modelos distintos, repetir en otra red/router,
-medir cuanto margen queda antes de subir la latencia operacional y exponer el
+medir cuánto margen existe antes de subir la latencia operacional y exponer el
 perfil como ajuste persistente de la aplicación.
 
 #### 1080p30 validado end-to-end multicámara

@@ -371,19 +371,19 @@ Para una sesión con varias fuentes:
 - Preparar los grafismos antes de necesitarlos en directo.
 - Configurar carpeta y formato de grabación antes de empezar la producción.
 
-## Limitaciones operativas actuales
+## Limitaciones operativas
 
 Limitaciones relevantes:
 
 - El modo validado principal es el uso local en la misma red.
 - La contribución remota con TURN queda como línea futura.
-- La mezcla de audio completa multifuente no está cerrada; el panel de audio
-  actual se centra en diagnóstico y audio local para REC.
+- La mezcla de audio completa multifuente no está cerrada; el panel de audio se
+  centra en diagnóstico y audio local para REC.
 - Lottie y SVG aparecen como formatos contemplados en el modelo de plantillas,
   pero el soporte principal validado se centra en HTML y en una primera ruta
   nativa para ticker.
 - La distribución validada está orientada a macOS y todavía puede depender de
   GStreamer instalado externamente.
 
-Estas limitaciones no impiden utilizar la versión actual, pero delimitan su
+Estas limitaciones no impiden utilizar la versión publicada, pero delimitan su
 alcance operativo.

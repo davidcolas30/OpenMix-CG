@@ -1,13 +1,13 @@
 # Estado del proyecto
 
 OpenMix-CG se encuentra en una versión funcional orientada a producción local en
-red propia. El objetivo actual es ofrecer una aplicación de realización
+red propia. El objetivo del proyecto es ofrecer una aplicación de realización
 multicámara con fuentes móviles, grafismo y grabación local, manteniendo una
 arquitectura preparada para seguir creciendo.
 
 ## Funcionalidades validadas
 
-La versión actual incluye:
+La versión publicada incluye:
 
 - mixer Preview/Program con CUT, AUTO y selección de fuentes;
 - cámaras móviles en red local mediante QR, HTTPS, WebSocket y WebRTC;
@@ -24,7 +24,7 @@ La versión actual incluye:
 ## Plataforma validada
 
 La plataforma de desarrollo y prueba principal es macOS en Apple Silicon. La
-ruta validada actualmente es:
+ruta validada es:
 
 - ejecución en desarrollo con `pnpm dev`;
 - GStreamer instalado como dependencia del sistema;
@@ -40,12 +40,12 @@ procesan en las rutas nativas.
 
 ## Límites conocidos
 
-La versión actual tiene varios límites importantes:
+Esta versión tiene varios límites importantes:
 
 - la contribución remota desde redes externas no está cerrada; requeriría TURN,
   políticas de reconexión y pruebas específicas;
 - la mezcla de audio multifuente no está implementada como mesa completa; el
-  panel actual se centra en audio local de grabación y diagnóstico;
+  panel de audio se centra en audio local de grabación y diagnóstico;
 - el empaquetado macOS no es autocontenido porque depende de una instalación
   externa de GStreamer;
 - Windows y Linux no tienen todavía una ruta validada equivalente a la de

@@ -13,7 +13,7 @@ principal de depurar y pulir el producto.
 ## Prerrequisito externo
 
 En esta primera fase, el ordenador destino debe tener GStreamer instalado. En
-macOS Apple Silicon, la prueba actual enlaza contra librerías de Homebrew en
+macOS Apple Silicon, la prueba validada enlaza contra librerías de Homebrew en
 `/opt/homebrew/opt/gstreamer`.
 
 Comprobaciones recomendadas antes de abrir la app empaquetada:
@@ -88,12 +88,12 @@ La prueba local confirma:
   aceptable para esta fase de prueba, pero debe revisarse para distribución.
 - El nombre de producto y ventana ya está unificado como `OpenMix-CG`, y los
   assets base de marca ya existen para UI y empaquetado. Para una release
-  pública queda validar el icono definitivo de Dock/paquete en la app generada,
-  firma, notarizacion y artefactos de distribución.
+  pública se deben validar el icono definitivo de Dock/paquete en la app
+  generada, la firma, la notarizacion y los artefactos de distribución.
 
 ## Fase posterior
 
 La siguiente fase de despliegue consistiria en incluir el runtime de GStreamer
 dentro del bundle o en un instalador propio. Esa fase exige resolver librerías,
 plugins, `gst-plugin-scanner`, rutas internas y firma/notarizacion con más
-cuidado. No debe mezclarse con la validación funcional actual.
+cuidado. No debe mezclarse con la validación funcional de esta fase.

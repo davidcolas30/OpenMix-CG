@@ -146,7 +146,7 @@ La razón original para usar `compositor` en Program y Preview no era solo selec
 - respetar z-order entre vídeo base, grafismo y futuras capas,
 - mantener una salida estable aunque cambien las fuentes internas.
 
-La medición de rendimiento ha mostrado un matiz importante: un `compositor force-live=true` produciendo siempre a 30fps tiene un coste apreciable aunque no haya frames visibles ni callbacks hacia Electron. Por tanto, la arquitectura objetivo no debe eliminar los compositores, sino usarlos de forma selectiva. El caso común de monitorización puede resolverse con una ruta barata de selección (`input-selector` o equivalente) y mantener el compositor solo con las capas que realmente pueden verse: vídeo actual, vídeo entrante durante transición y grafismo. Así se conserva la capacidad completa del mixer sin pagar el coste de cuatro entradas live por monitor en todos los frames.
+La medición de rendimiento ha mostrado un matiz importante: un `compositor force-live=true` produciendo siempre a 30fps tiene un coste apreciable aunque no haya frames visibles ni callbacks hacia Electron. Por tanto, la arquitectura objetivo no debe eliminar los compositores, sino usarlos de forma selectiva. El caso común de monitorización puede resolverse con una ruta barata de selección (`input-selector` o equivalente) y mantener el compositor solo con las capas que realmente pueden verse: vídeo al aire, vídeo entrante durante transición y grafismo. Así se conserva la capacidad completa del mixer sin pagar el coste de cuatro entradas live por monitor en todos los frames.
 
 ## Conceptos principales
 
@@ -164,7 +164,7 @@ Es el mecanismo usado para enviar callbacks desde hilos nativos de GStreamer hac
 
 ### Pipeline de GStreamer
 
-Es la cadena de elementos que define el flujo del vídeo. En el mixer actual, el pipeline contiene fuentes, colas, compositores, `appsink` para salida de monitorización, una rama nativa de grabación y selectores de entrada para conectar las cámaras WebRTC directamente al mixer.
+Es la cadena de elementos que define el flujo del vídeo. En el pipeline del mixer, el recorrido contiene fuentes, colas, compositores, `appsink` para salida de monitorización, una rama nativa de grabación y selectores de entrada para conectar las cámaras WebRTC directamente al mixer.
 
 ### Bus de GStreamer
 
@@ -353,7 +353,8 @@ En el renderer A/B de monitores hay una consideracion adicional: cuando un
 vídeo local llega a Program se enruta por la rama secundaria de A/B, la misma
 que se usa para precalentar el clip mientras está en Preview. Si el CUT se hace
 con el clip en pausa, el addon libera la compuerta durante un instante para que
-esa rama reciba un frame reanclado al tiempo actual y vuelve a bloquearla. El
+esa rama reciba un frame reanclado al tiempo de ejecución del pipeline y vuelve
+a bloquearla. El
 objetivo es que un clip pausado se comporte como una fuente live congelada, no
 como una fuente desconectada que obliga al monitor a mostrar barras.
 
@@ -484,7 +485,7 @@ Es un pad que el elemento crea cuando la aplicación lo pide. En el compositor e
 
 ### Alpha
 
-Controla si una fuente es visible o invisible dentro del compositor. En el mixer actual el cambio entre fuentes no se hace desmontando el pipeline, sino cambiando `alpha` para decidir que entrada se ve.
+Controla si una fuente es visible o invisible dentro del compositor. En este mixer el cambio entre fuentes no se hace desmontando el pipeline, sino cambiando `alpha` para decidir que entrada se ve.
 
 Importante: `alpha=0` solo oculta una entrada dentro del compositor; no garantiza que las ramas anteriores de GStreamer dejen de escalar, convertir o empujar buffers. Por eso las ramas de monitorización PGM/PVW también usan `valve`: la `valve` decide si una rama hace trabajo, y `alpha` decide cómo se mezcla lo que llega al compositor.
 
@@ -507,7 +508,8 @@ Es la fase de preparación del pipeline antes de producir salida live. Este conc
 
 ### Fuente
 
-Es cualquier entrada visual que el mixer puede manejar. En la fase actual hay
+Es cualquier entrada visual que el mixer puede manejar. En la versión
+documentada hay
 una fuente sintética SMPTE y tres slots reales compartidos por cámaras WebRTC o
 vídeos locales. Compartir el slot es intencionado: mantiene estable la UI de
 Preview/Program y evita reconstruir el pipeline completo cuando el operador
@@ -536,7 +538,7 @@ En las rutas optimizadas, esa idea se materializa con selectores y valves para n
 
 ## Como salen Program, Preview y multiview hacia la interfaz
 
-El proyecto ha pasado por varias rutas de monitorización. La distinción actual es:
+El proyecto ha pasado por varias rutas de monitorización. La distinción operativa es:
 
 - **Program/Preview grandes**: la ruta preferente para rendimiento usa superficies nativas de GStreamer (`OPENMIX_BIG_MONITORS_SURFACE=native`). El renderer solo comunica layout y controles.
 - **Miniaturas/multiview**: son monitorización reducida de sala. Pueden viajar por rutas más baratas o diagnósticas porque no son la salida final.
@@ -553,8 +555,8 @@ Opciones evaluadas:
 | Alternativa                                                           | Encaje técnico                                                                                                 | Riesgo principal                                                                                                     | Lectura para OpenMix-CG                                                                                                                                                                  |
 | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | WebRTC local GStreamer -> Renderer                                    | GStreamer ya tiene `webrtcbin`; Electron/Chromium puede recibir un `MediaStreamTrack` y pintarlo con `<video>` | Añade encode/decode local de PGM/PVW y algo de latencia                                                              | Fue útil como prototipo A/B, pero no debe sustituir a la ruta nativa de Program/Preview salvo diagnóstico explícito                                                                      |
-| Sink nativo (`glimagesink`, `osxvideosink`) controlado desde Electron | GStreamer puede renderizar con sinks nativos y algunos implementan `GstVideoOverlay`                           | Integrar ventanas/superficies nativas dentro de una UI React/Electron requiere sincronizar geometría y ciclo de vida | Ruta preferente actual para monitores grandes cuando se busca rendimiento; `glimagesink` es el valor protegido en macOS al activar `OPENMIX_BIG_MONITORS_SURFACE=native`; ver `ADR-0007` |
-| WebCodecs con chunks codificados                                      | Reduce mucho el volumen frente a I420 crudo y permite decodificar en Chromium                                  | Hay que disenar transporte, timestamps, empaquetado H264/keyframes y backpressure                                    | Potente, pero más experimental y menos directo que WebRTC                                                                                                                                |
+| Sink nativo (`glimagesink`, `osxvideosink`) controlado desde Electron | GStreamer puede renderizar con sinks nativos y algunos implementan `GstVideoOverlay`                           | Integrar ventanas/superficies nativas dentro de una UI React/Electron requiere sincronizar geometría y ciclo de vida | Ruta preferente para monitores grandes cuando se busca rendimiento; `glimagesink` es el valor protegido en macOS al activar `OPENMIX_BIG_MONITORS_SURFACE=native`; ver `ADR-0007` |
+| WebCodecs con chunks codificados                                      | Reduce mucho el volumen frente a I420 crudo y permite decodificar en Chromium                                  | Hay que disenar transporte, timestamps, empaquetado H264/keyframes y backpressure                                    | Más experimental y menos directo que WebRTC                                                                                                                                                |
 | Shared memory / shared texture                                        | Evita copias grandes si se implementa bien                                                                     | Requiere módulo nativo especifico por plataforma y gestión manual de sincronización                                  | Para monitores no es el frente inmediato. Para grafismo HTML es el spike aislado descrito en `ADR-0009`                                                                                  |
 | HLS/DASH/local HTTP                                                   | Fácil de servir y reproducir                                                                                   | Latencia demasiado alta para monitorización de realización                                                           | No encaja con Preview/Program en vivo                                                                                                                                                    |
 
@@ -640,7 +642,7 @@ en Preview/Program o multiview.
 Los grafismos de Program para REC no entran como otra entrada live del compositor
 de grabación. La ruta anterior `appsrc -> comp_pgm_record` podía arrancar tarde
 o imponer negro si el pad de grafismo no estaba preparado al comenzar REC. La
-ruta actual cachea el último raster BGRA de grafismo y lo mezcla justo en el
+la ruta de REC cachea el último raster BGRA de grafismo y lo mezcla justo en el
 `tee` de grabación, antes del encoder, solo cuando el grafismo de Program esta
 activo. La mezcla se limita al rectángulo con alpha distinto de cero para no
 recorrer todo el frame 1080p si el lower third ocupa solo una franja. Mientras no
@@ -833,7 +835,7 @@ Estas cifras son observaciones empíricas en macOS durante las pruebas de abril 
 | Compositores activos sin callbacks    |                               `OPENMIX_MONITOR_CALLBACKS=off` |                  37-38% | El coste está en producir los compositores live, no en el callback/pull de `appsink`                                             |
 | Monitores por selector sin miniaturas | `OPENMIX_MONITOR_RENDERER=selector`, `OPENMIX_THUMBNAILS=off` |                  30-35% | Reduce el coste nativo frente a los compositores generales; PGM/PVW siguen cruzando IPC hacia Renderer a unos 44 MiB/s agregados |
 | Monitores por selector con miniaturas |  `OPENMIX_MONITOR_RENDERER=selector`, `OPENMIX_THUMBNAILS=on` |                  35-40% | La multiview vuelve a estar activa; las miniaturas añaden unos 3 MiB/s por IPC y algo de coste de escalado/renderizado           |
-| A/B sin multiview                     |   `OPENMIX_MONITOR_RENDERER=ab-compositor`, `OPENMIX_MULTIVIEW=off`, PGM/PVW nativos |                  41-47% | Baseline actual antes de optimizar multiview; confirma que Audio apagado no introduce coste visible                             |
+| A/B sin multiview                     |   `OPENMIX_MONITOR_RENDERER=ab-compositor`, `OPENMIX_MULTIVIEW=off`, PGM/PVW nativos |                  41-47% | Baseline de comparación antes de optimizar multiview; confirma que Audio apagado no introduce coste visible                     |
 | A/B con multiview WebRTC              |   `OPENMIX_MONITOR_RENDERER=ab-compositor`, `OPENMIX_MULTIVIEW=on`, `OPENMIX_MULTIVIEW_SURFACE=webrtc` |                  55-60% | La multiview ligera suma unos 12-18 puntos frente a la baseline sin multiview                                                    |
 | A/B con multiview nativa              |   `OPENMIX_MONITOR_RENDERER=ab-compositor`, `OPENMIX_MULTIVIEW=on`, `OPENMIX_MULTIVIEW_SURFACE=native`, HUD off |                  58-64% | La salida nativa no basta por si sola; el coste está en construir la rama de mosaico y sus conversiones                          |
 
@@ -845,7 +847,7 @@ Sobre ese modo A/B existe una segunda guarda experimental:
 `OPENMIX_MONITOR_COMPOSITOR_BACKEND=gl`. En ese caso PGM/PVW de monitorización
 usan `glvideomixer` en vez de `compositor`, subiendo las entradas con
 `glupload/glcolorconvert` y descargando después con `gldownload` para mantener
-compatibles las salidas actuales. Es una prueba acotada: no cambia REC 1080p,
+compatibles las salidas existentes. Es una prueba acotada: no cambia REC 1080p,
 no sustituye el motor HTML/CSS de grafismo y no es el modo por defecto. Sirve
 para comprobar si mover la mezcla current+next+grafismo a OpenGL baja el coste
 sostenido antes de redisenar más partes del pipeline.
@@ -866,12 +868,12 @@ compartida.
 Una producción real casi siempre tendrá algún grafismo persistente, por ejemplo una mosca de canal. Eso no invalida la optimización, pero obliga a distinguir tipos de grafismo:
 
 - Una mosca estática o poco cambiante no necesita el mismo modelo que una composición completa con varias fuentes, transiciones y capas HTML dinámicas.
-- El caso caro observado es mantener compositores generales PGM/PVW siempre vivos, no simplemente mezclar un pequeño overlay.
+- El caso caro observado es mantener compositores generales PGM/PVW siempre vivos, no solo mezclar un pequeño overlay.
 - La arquitectura objetivo debería tener una ruta barata para selección de fuente y overlays simples, y reservar el `compositor` general para transiciones, grafismos complejos o escenas con varias capas.
 
 El objetivo no es que el rendimiento solo mejore cuando no hay grafismo. El objetivo es evitar pagar el coste máximo de composición general por cada frame cuando el grafismo activo es simple. Para una mosca, la solución probable es una ruta de overlay especializada o una composición con menos pads y menos trabajo por frame. Para lower thirds animados, transiciones o grafismo HTML complejo, sí habrá que activar composición real, pero solo durante el tiempo y en la salida donde sea necesaria.
 
-En OpenMix-CG los grafismos actuales no tienen todos el mismo perfil temporal:
+En OpenMix-CG los grafismos no tienen todos el mismo perfil temporal:
 
 | Tipo de grafismo | Movimiento mientras está visible                             | Ruta candidata                                                                    |
 | ---------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------- |
@@ -881,7 +883,7 @@ En OpenMix-CG los grafismos actuales no tienen todos el mismo perfil temporal:
 
 Esta clasificación es importante porque permite optimizar sin sacrificar grafismo: la animación de entrada/salida puede usar una ruta de composición durante pocos frames, pero el estado estable debería convertirse en un overlay cacheado. El ticker es el caso distinto: como cambia continuamente, hay que optimizarlo por área y no por frecuencia, renderizando solo la banda necesaria en lugar de una capa 1920x1080 completa.
 
-En la instalación actual de desarrollo se han encontrado librerías de plugins GStreamer ya presentes para `cairo`, `gdkpixbuf`, `opengl`, `overlaycomposition`, `compositor` y `pango`. Es decir, esas familias no requieren necesariamente cambiar de stack ni descargar GstWPE para hacer pruebas iniciales. OpenMix-CG, sin embargo, no las usa todavía para el grafismo principal: hoy genera los grafismos HTML/CSS en Chromium offscreen y los inyecta como frames BGRA por `appsrc` hacia los compositores. GstWPE sería una alternativa más grande para renderizar HTML dentro de GStreamer, no una dependencia ya integrada.
+En el entorno de desarrollo validado se han encontrado librerías de plugins GStreamer ya presentes para `cairo`, `gdkpixbuf`, `opengl`, `overlaycomposition`, `compositor` y `pango`. Es decir, esas familias no requieren necesariamente cambiar de stack ni descargar GstWPE para hacer pruebas iniciales. OpenMix-CG, sin embargo, no las usa todavía para el grafismo principal: genera los grafismos HTML/CSS en Chromium offscreen y los inyecta como frames BGRA por `appsrc` hacia los compositores. GstWPE sería una alternativa más grande para renderizar HTML dentro de GStreamer, no una dependencia ya integrada.
 
 ## Problemas reales que este módulo ya ha ayudado a entender
 
