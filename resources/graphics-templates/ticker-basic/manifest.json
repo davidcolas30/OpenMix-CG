@@ -1,0 +1,34 @@
+{
+  "id": "ticker-basic",
+  "name": "Ticker Básico",
+  "category": "ticker",
+  "format": "html",
+  "version": "0.1.0",
+  "entryHtml": "template.html",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fields": [
+    {
+      "id": "label",
+      "label": "Etiqueta",
+      "type": "text",
+      "defaultValue": "URGENTE",
+      "maxLength": 20
+    },
+    {
+      "id": "text",
+      "label": "Texto",
+      "type": "text",
+      "defaultValue": "OpenMix-CG integra mezcla multicamara, WebRTC y grafismo HTML5 en una sola sala de realizacion.",
+      "maxLength": 220
+    },
+    {
+      "id": "speed",
+      "label": "Duracion del ciclo",
+      "type": "number",
+      "defaultValue": "18"
+    }
+  ]
+}

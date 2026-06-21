@@ -1,0 +1,5 @@
+flowchart LR
+    PGM[PGM/PVW en GStreamer] --> Enc[Encoder monitor 540p/720p]
+    Enc --> RTC[GStreamer webrtcbin/webrtcsink]
+    RTC -. SDP/ICE por IPC o WS local .- UI[Renderer]
+    RTC --> Video[HTMLVideoElement]

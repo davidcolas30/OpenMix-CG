@@ -1,0 +1,50 @@
+flowchart LR
+    subgraph Inputs[Entradas]
+        direction TB
+        Source[Fuente disponible]
+    end
+
+    subgraph Control[Operacion]
+        direction TB
+        PVW[Preview]
+        CUT[CUT]
+        PGM[Program]
+        PVW -->|preparacion| CUT
+        CUT -->|conmutacion| PGM
+    end
+
+    subgraph Graphics[Superposicion]
+        direction TB
+        Overlay[Rotulos y grafismos]
+    end
+
+    subgraph Air[Salida]
+        direction TB
+        Output[Programa compuesto]
+        Signal[Senal al aire]
+        Output -->|salida final| Signal
+    end
+
+    Source -->|seleccion| PVW
+    PGM -->|video base| Output
+    Overlay -->|superposicion| Output
+
+
+    classDef ui fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#ffffff,stroke-width:1.5px;
+    class Source input;
+    class PVW,CUT,PGM control;
+    class Overlay graphics;
+    class Output,Signal output;

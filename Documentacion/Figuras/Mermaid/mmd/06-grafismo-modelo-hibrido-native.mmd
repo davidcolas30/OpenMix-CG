@@ -1,0 +1,8 @@
+flowchart LR
+    Renderer[Panel de grafismo en Renderer] --> Preload[window.openMix.graphics]
+    Preload --> Main[Handlers IPC graphics]
+    Main --> Service[GraphicsService]
+    Service --> NativeRenderer[TickerNativeRenderer]
+    NativeRenderer --> Preview[Preview del panel de grafismos]
+    NativeRenderer --> Overlay[Frame con alpha para overlay]
+    Overlay --> GStreamer[appsrc de grafismo en GStreamer]

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Preview Lower Third Basico</title>
+  <desc id="desc">Miniatura fiel del lower third basico para el selector de plantillas</desc>
+  <defs>
+    <linearGradient id="accent-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#49a5b8"/>
+      <stop offset="100%" stop-color="#1f7c92"/>
+    </linearGradient>
+    <linearGradient id="content-card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.96"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="#0f172a" fill-opacity="0.02"/>
+  <g transform="translate(29.333 251.333)">
+    <rect x="0" y="-39.333" width="5.333" height="67.333" rx="6.667" fill="url(#accent-bar)"/>
+    <path d="M5.333,-39.333 H245.333 A8,8 0 0 1 253.333,-31.333 V20 A8,8 0 0 1 245.333,28 H5.333 Z" fill="url(#content-card)" stroke="rgba(148,163,184,0.22)" stroke-width="0.8"/>
+    <text x="16.666" y="-15.333" fill="rgba(186,230,253,0.92)" font-family="Aptos, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="6" font-weight="700" letter-spacing="1.1">OPENMIX-GC</text>
+    <text x="16.666" y="3.333" fill="#f8fafc" font-family="Aptos, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18.667" font-weight="700">Nombre del invitado</text>
+    <text x="16.666" y="16.666" fill="rgba(226,232,240,0.92)" font-family="Aptos, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="500">Cargo o descripcion</text>
+  </g>
+</svg>

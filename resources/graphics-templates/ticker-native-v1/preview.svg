@@ -1,0 +1,19 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" fill="#0B1020"/>
+  <g opacity="0.14">
+    <path d="M0 45H640" stroke="#E2E8F0"/>
+    <path d="M0 94H640" stroke="#E2E8F0"/>
+    <path d="M0 143H640" stroke="#E2E8F0"/>
+    <path d="M0 192H640" stroke="#E2E8F0"/>
+    <path d="M0 241H640" stroke="#E2E8F0"/>
+    <path d="M0 290H640" stroke="#E2E8F0"/>
+  </g>
+  <rect x="28" y="282" width="584" height="50" rx="18" fill="#0F172A"/>
+  <rect x="28" y="282" width="146" height="50" rx="18" fill="#49A5B8"/>
+  <rect x="174" y="282" width="438" height="50" rx="18" fill="#0F172A"/>
+  <rect x="28" y="282" width="584" height="50" rx="18" stroke="rgba(148,163,184,0.24)"/>
+  <rect x="28" y="282" width="146" height="8" rx="4" fill="rgba(255,255,255,0.18)"/>
+  <rect x="174" y="282" width="438" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+  <text x="101" y="313" fill="#F8FAFC" font-family="Helvetica Neue, Arial, sans-serif" font-size="19" font-weight="800" letter-spacing="3.2">URGENTE</text>
+  <text x="198" y="313" fill="#F8FAFC" font-family="Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="600">Ticker native con renderer especializado</text>
+</svg>

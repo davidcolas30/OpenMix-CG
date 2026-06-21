@@ -1,0 +1,31 @@
+sequenceDiagram
+    autonumber
+    participant UI as UI realizador
+    participant Main as Main Process
+    participant HTTP as HTTPS local
+    participant WS as WSS
+    participant Mobile as Navegador movil
+    participant Bridge as WebRTC bridge
+    participant Peer as webrtcbin
+    participant Sync as Sync Buffer Manager
+    participant Mixer as Mixer GStreamer
+
+    UI->>Main: createToken()
+    Main-->>UI: peerId + token + URL
+    UI-->>Mobile: QR visible
+    Mobile->>HTTP: GET /cam?token=...
+    Mobile->>WS: join(token)
+    WS->>Main: validar token + origin + IP
+    Mobile->>WS: offer SDP
+    WS->>Bridge: reenviar offer
+    Bridge->>Peer: crear peer remoto
+    Peer-->>Bridge: answer SDP
+    Bridge-->>WS: answer
+    Mobile->>WS: ICE candidates
+    WS->>Bridge: reenviar ICE
+    Bridge->>Peer: addRemoteIceCandidate()
+    Mobile-->>Peer: Media WebRTC
+    Peer->>Sync: video decodificado con PTS RTP
+    Sync->>Mixer: frames retimeados con delay compensatorio
+    Mixer-->>Main: Preview y multiview
+    Main-->>UI: Estado, handles y superficies de monitor

@@ -1,0 +1,48 @@
+flowchart LR
+    subgraph InputPath["Program, overlay y preparación raw"]
+        direction TB
+        PGMRec[Compositor Program REC\n1080p]
+        OutputRate[videorate drop-only\n30 fps]
+        Tee[tee de grabación]
+        GfxProbe[overlay grafismo\nProgram]
+        Queue[queue]
+        InputRetimer[segmento local\n+ retimer raw]
+        Convert[videoconvert]
+        PGMRec --> OutputRate --> Tee --> GfxProbe --> Queue --> InputRetimer --> Convert
+    end
+
+    subgraph OutputPath["Cadencia, codificación y contenedor"]
+        direction TB
+        Rate[videorate\n30 fps]
+        FrameGate[frame gate\nrealtime 30 fps]
+        Encoder[H.264 encoder]
+        Retimer[segmento local\n+ retimer 30 fps]
+        EncQueue[queue H.264]
+        Muxer[muxer MP4/MKV]
+        File[filesink]
+        Rate --> FrameGate --> Encoder --> Retimer --> EncQueue --> Muxer --> File
+    end
+
+    Legacy[appsink legacy\ncerrado]
+
+    Convert --> Rate
+    Tee -.-> Legacy
+
+    classDef ui fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#f8fafc,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#f8fafc,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#f8fafc,stroke-width:1.5px;
+    class PGMRec,OutputRate,Tee composition;
+    class GfxProbe,Queue,InputRetimer,Convert,Rate,FrameGate,Encoder,Retimer media;
+    class EncQueue,Muxer,File output;
+    class Legacy monitoring;

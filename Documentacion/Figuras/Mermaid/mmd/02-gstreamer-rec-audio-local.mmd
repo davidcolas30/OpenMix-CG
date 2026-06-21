@@ -1,0 +1,12 @@
+flowchart LR
+    Mic[osxaudiosrc/autoaudiosrc]
+    Queue[queue]
+    Delay[identity ts-offset]
+    Convert[audioconvert + audioresample]
+    RawCaps[audio/x-raw 48kHz mono]
+    Aac[AAC encoder]
+    Parse[aacparse]
+    EncQueue[queue comprimida AAC]
+    Muxer[muxer MP4/MKV]
+
+    Mic --> Queue --> Delay --> Convert --> RawCaps --> Aac --> Parse --> EncQueue --> Muxer

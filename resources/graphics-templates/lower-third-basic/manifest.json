@@ -1,0 +1,28 @@
+{
+  "id": "lower-third-basic",
+  "name": "Lower Third Básico",
+  "category": "lower-third",
+  "format": "html",
+  "version": "0.1.0",
+  "entryHtml": "template.html",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fields": [
+    {
+      "id": "name",
+      "label": "Nombre",
+      "type": "text",
+      "defaultValue": "Nombre del invitado",
+      "maxLength": 40
+    },
+    {
+      "id": "title",
+      "label": "Cargo",
+      "type": "text",
+      "defaultValue": "Cargo o descripción",
+      "maxLength": 60
+    }
+  ]
+}

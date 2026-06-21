@@ -1,0 +1,78 @@
+{
+  "id": "ticker-native-v1-basic",
+  "name": "Ticker Nativo V1 Basico",
+  "category": "ticker",
+  "format": "native",
+  "rendererId": "ticker-v1",
+  "version": "0.1.0",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fields": [
+    {
+      "id": "label",
+      "label": "Etiqueta",
+      "type": "text",
+      "defaultValue": "URGENTE",
+      "maxLength": 20
+    },
+    {
+      "id": "text",
+      "label": "Texto",
+      "type": "text",
+      "defaultValue": "OpenMix-CG integra mezcla multicamara, WebRTC y grafismo nativo especializado en una sola sala de realizacion.",
+      "maxLength": 220
+    },
+    {
+      "id": "speed",
+      "label": "Duracion del ciclo",
+      "type": "number",
+      "defaultValue": "18"
+    }
+  ],
+  "layout": {
+    "left": 72,
+    "bottom": 46,
+    "width": 1776,
+    "height": 92,
+    "labelWidth": 236,
+    "bodyPaddingY": 22,
+    "copyGap": 96
+  },
+  "style": {
+    "labelBackground": "#49a5b8",
+    "labelBackgroundAccent": "#1f7c92",
+    "bodyBackground": "#0f172a",
+    "bodyBackgroundAccent": "#1e293b",
+    "borderColor": "rgba(148, 163, 184, 0.22)",
+    "labelTextColor": "#f8fafc",
+    "bodyTextColor": "#f8fafc",
+    "fontFamily": "Aptos",
+    "labelFontSize": 32,
+    "bodyFontSize": 40,
+    "labelFontWeight": 800,
+    "bodyFontWeight": 600,
+    "labelLetterSpacingEm": 0.16,
+    "bodyLetterSpacingEm": 0.01,
+    "cornerRadius": 24
+  },
+  "animations": {
+    "in": {
+      "type": "slide-up-fade",
+      "durationMs": 460,
+      "offsetYPx": 16
+    },
+    "out": {
+      "type": "slide-down-fade",
+      "durationMs": 360,
+      "offsetYPx": 14
+    }
+  },
+  "constraints": {
+    "minSpeedSeconds": 8,
+    "maxSpeedSeconds": 40,
+    "supportsPreview": true,
+    "supportsProgram": true
+  }
+}

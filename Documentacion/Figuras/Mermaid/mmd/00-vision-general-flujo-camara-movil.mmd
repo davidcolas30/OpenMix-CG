@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant R as Realizador
+    participant UI as Renderer
+    participant M as Main Process
+    participant H as HTTPS + WSS
+    participant MB as Navegador movil
+    participant W as webrtcbin
+    participant S as Sync Buffer
+    participant G as Mixer
+    participant O as Monitores y REC
+
+    R->>UI: Anadir camara
+    UI->>M: createConnectionToken()
+    M-->>UI: URL + token
+    UI-->>R: Muestra QR
+    R->>MB: Escanea QR
+    MB->>H: Abre /cam?token=...
+    MB->>H: join + offer + ICE
+    H->>M: Mensajes autenticados
+    M->>W: Crear peer y aplicar offer
+    W-->>M: answer + ICE local
+    M-->>H: answer + ICE
+    MB-->>W: Media WebRTC
+    W->>S: Decodificar y aportar PTS/RTP/NTP
+    S->>G: Inyectar slot retimeado
+    G->>O: Program, Preview, multiview y REC nativo
+    O-->>M: Handles, estado y diagnostico reducido
+    M-->>UI: Estado, layout y monitorizacion

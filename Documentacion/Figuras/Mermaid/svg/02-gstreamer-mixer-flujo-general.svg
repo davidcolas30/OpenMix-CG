@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="900" viewBox="0 0 1640 900" role="img">
+<rect width="1640" height="900" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937" stroke="#1f2937"/>
+</marker>
+</defs>
+<rect x="24" y="28" width="1592" height="394" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="62" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Entradas y normalización por fuente</text>
+<g id="camera">
+<rect x="94" y="88" width="240" height="76" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="214" y="115.5">Cámara móvil</tspan><tspan x="214" y="138.5">webrtcbin + H.264</tspan></text>
+</g>
+<g id="localVideo">
+<rect x="404" y="88" width="240" height="76" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="524" y="115.5">Vídeo local</tspan><tspan x="524" y="138.5">uridecodebin</tspan></text>
+</g>
+<g id="smpte">
+<rect x="714" y="88" width="240" height="76" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="834" y="115.5">Fuente 0</tspan><tspan x="834" y="138.5">SMPTE</tspan></text>
+</g>
+<g id="graphicsInput">
+<rect x="1024" y="88" width="240" height="76" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1144" y="115.5">Grafismo</tspan><tspan x="1144" y="138.5">HTML/native alpha</tspan></text>
+</g>
+<g id="audioInput">
+<rect x="1334" y="88" width="240" height="76" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1454" y="115.5">Audio local REC</tspan><tspan x="1454" y="138.5">identity ts-offset</tspan></text>
+</g>
+<g id="sync">
+<rect x="94" y="286" width="240" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="214" y="316.5">Sync Buffer</tspan><tspan x="214" y="339.5">RTP/NTP</tspan></text>
+</g>
+<g id="slots">
+<rect x="404" y="286" width="240" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="524" y="316.5">Slots media 1-3</tspan><tspan x="524" y="339.5">WebRTC o vídeo local</tspan></text>
+</g>
+<g id="ready">
+<rect x="714" y="286" width="240" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="834" y="316.5">Fuentes listas</tspan><tspan x="834" y="339.5">para el mixer</tspan></text>
+</g>
+<g id="thumbs">
+<rect x="1024" y="286" width="240" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1144" y="316.5">Miniaturas</tspan><tspan x="1144" y="339.5">0-3</tspan></text>
+</g>
+<polyline points="214,164 214,286" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="524,164 524,286" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="834,164 834,286" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="334,327 404,327" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="644,327 714,327" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="954,327 1024,327" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="468" width="1592" height="190" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="502" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Composición</text>
+<g id="programPreview">
+<rect x="234" y="538" width="284" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="376" y="569.5">Program y Preview</tspan><tspan x="376" y="592.5">selectores/compositores</tspan></text>
+</g>
+<g id="multiview">
+<rect x="638" y="538" width="250" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="763" y="569.5">Multiview reducida</tspan><tspan x="763" y="592.5">15 fps</tspan></text>
+</g>
+<g id="programRec">
+<rect x="1010" y="538" width="250" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1135" y="569.5">Program REC</tspan><tspan x="1135" y="592.5">1080p dedicado</tspan></text>
+</g>
+<polyline points="834,368 834,448 206,448 206,580 234,580" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="834,368 834,448 610,448 610,580 638,580" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="834,368 834,448 982,448 982,580 1010,580" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1144,164 1144,214 1295,214 1295,580 1260,580" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="704" width="1592" height="170" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="738" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Salidas principales</text>
+<g id="nativeMonitors">
+<rect x="94" y="768" width="300" height="86" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="244" y="800.5">Monitores Program</tspan><tspan x="244" y="823.5">y Preview nativos</tspan></text>
+</g>
+<g id="multiviewSink">
+<rect x="474" y="768" width="300" height="86" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="624" y="800.5">Monitor multiview</tspan><tspan x="624" y="823.5">nativo/WebRTC local</tspan></text>
+</g>
+<g id="legacy">
+<rect x="854" y="768" width="300" height="86" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1004" y="800.5">Monitor legacy</tspan><tspan x="1004" y="823.5">o diagnóstico</tspan></text>
+</g>
+<g id="nativeRec">
+<rect x="1234" y="768" width="300" height="86" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1384" y="800.5">REC nativo</tspan><tspan x="1384" y="823.5">encoder + muxer + filesink</tspan></text>
+</g>
+<polyline points="376,622 376,690 244,690 244,768" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="376,622 376,690 1004,690 1004,768" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="763,622 763,690 624,690 624,768" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1135,622 1135,690 1384,690 1384,768" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1454,164 1454,204 1580,204 1580,730 1384,730 1384,768" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

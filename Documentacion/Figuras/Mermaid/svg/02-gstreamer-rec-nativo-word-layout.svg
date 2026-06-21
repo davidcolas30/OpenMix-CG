@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="760" viewBox="0 0 1640 760" role="img">
+<rect width="1640" height="760" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937" stroke="#1f2937"/>
+</marker>
+</defs>
+<rect x="24" y="30" width="1592" height="172" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="64" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Program y overlay</text>
+<g id="pgm">
+<rect x="56" y="72" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="167" y="103.5">Compositor Program</tspan><tspan x="167" y="126.5">REC 1080p</tspan></text>
+</g>
+<g id="outputRate">
+<rect x="326" y="72" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="437" y="103.5">videorate drop-only</tspan><tspan x="437" y="126.5">30 fps</tspan></text>
+</g>
+<g id="tee">
+<rect x="596" y="72" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="707" y="115">tee de grabación</tspan></text>
+</g>
+<g id="gfx">
+<rect x="866" y="72" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="977" y="103.5">overlay grafismo</tspan><tspan x="977" y="126.5">Program</tspan></text>
+</g>
+<g id="queue">
+<rect x="1136" y="72" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1247" y="115">queue</tspan></text>
+</g>
+<polyline points="278,114 326,114" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="548,114 596,114" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="818,114 866,114" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1088,114 1136,114" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g id="legacy">
+<rect x="1376" y="218" width="220" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1486" y="249.5">appsink legacy</tspan><tspan x="1486" y="272.5">cerrado</tspan></text>
+</g>
+<polyline points="707,156 707,260 1376,260" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<rect x="294" y="302" width="1110" height="170" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="849" y="336" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Cadencia raw</text>
+<g id="frameGate">
+<rect x="326" y="342" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="437" y="373.5">frame gate</tspan><tspan x="437" y="396.5">realtime 30 fps</tspan></text>
+</g>
+<g id="rate">
+<rect x="596" y="342" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="707" y="373.5">videorate</tspan><tspan x="707" y="396.5">30 fps</tspan></text>
+</g>
+<g id="convert">
+<rect x="866" y="342" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="977" y="385">videoconvert</tspan></text>
+</g>
+<g id="inputRetimer">
+<rect x="1136" y="342" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1247" y="373.5">segmento local</tspan><tspan x="1247" y="396.5">+ retimer raw</tspan></text>
+</g>
+<polyline points="1247,156 1247,342" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1136,384 1088,384" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="866,384 818,384" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="596,384 548,384" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="294" y="510" width="1322" height="190" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="955" y="544" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Codificación y contenedor</text>
+<g id="encoder">
+<rect x="326" y="570" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="437" y="613">H.264 encoder</tspan></text>
+</g>
+<g id="retimer">
+<rect x="596" y="570" width="222" height="84" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="707" y="601.5">segmento local</tspan><tspan x="707" y="624.5">+ retimer 30 fps</tspan></text>
+</g>
+<g id="encQueue">
+<rect x="866" y="570" width="222" height="84" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="977" y="613">queue H.264</tspan></text>
+</g>
+<g id="muxer">
+<rect x="1136" y="570" width="222" height="84" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1247" y="613">muxer MP4/MKV</tspan></text>
+</g>
+<g id="file">
+<rect x="1376" y="570" width="220" height="84" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1486" y="613">filesink</tspan></text>
+</g>
+<polyline points="437,426 437,570" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="548,612 596,612" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="818,612 866,612" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1088,612 1136,612" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1358,612 1376,612" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

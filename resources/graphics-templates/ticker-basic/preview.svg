@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Ticker basico">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#49a5b8" />
+      <stop offset="100%" stop-color="#1f7c92" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="28" fill="#020617" />
+  <rect x="24" y="262" width="592" height="72" rx="20" fill="url(#bg)" stroke="rgba(148,163,184,0.24)" />
+  <rect x="24" y="262" width="128" height="72" rx="20" fill="url(#accent)" />
+  <text x="88" y="305" fill="#f8fafc" font-family="Aptos, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">URGENTE</text>
+  <text x="180" y="306" fill="#f8fafc" font-family="Aptos, Arial, sans-serif" font-size="22" font-weight="700">
+    OpenMix-CG combina mezcla multicamara, WebRTC y grafismo HTML5.
+  </text>
+</svg>

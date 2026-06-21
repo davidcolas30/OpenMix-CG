@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="706" viewBox="0 0 1640 706" role="img">
+<rect width="1640" height="706" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937" stroke="#1f2937"/>
+</marker>
+</defs>
+<rect x="24" y="28" width="1592" height="174" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="62" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Control de aplicación</text>
+<g id="renderer">
+<rect x="64" y="94" width="220" height="82" rx="0" fill="#111827" stroke="#64748b" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="174" y="124.5">Renderer</tspan><tspan x="174" y="147.5">React</tspan></text>
+</g>
+<g id="preload">
+<rect x="366" y="94" width="220" height="82" rx="0" fill="#111827" stroke="#4f96a7" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="476" y="136">Preload API</tspan></text>
+</g>
+<g id="ipc">
+<rect x="666" y="94" width="210" height="82" rx="0" fill="#111827" stroke="#4f96a7" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="771" y="136">IPC tipado</tspan></text>
+</g>
+<g id="mainServices">
+<rect x="958" y="94" width="290" height="82" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1103" y="124.5">Electron Main</tspan><tspan x="1103" y="147.5">+ servicios</tspan></text>
+</g>
+<g id="addon">
+<rect x="1330" y="94" width="230" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1445" y="124.5">Addon N-API</tspan><tspan x="1445" y="147.5">GStreamer</tspan></text>
+</g>
+<polyline points="284,135 366,135" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="586,135 666,135" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="876,135 958,135" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1248,135 1330,135" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="250" width="1592" height="190" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="284" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Conexión móvil local</text>
+<g id="qr">
+<rect x="64" y="322" width="190" height="82" rx="0" fill="#111827" stroke="#4ca6b8" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="159" y="352.5">QR de</tspan><tspan x="159" y="375.5">conexión</tspan></text>
+</g>
+<g id="browser">
+<rect x="334" y="322" width="220" height="82" rx="0" fill="#111827" stroke="#4ca6b8" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="444" y="352.5">Navegador</tspan><tspan x="444" y="375.5">móvil</tspan></text>
+</g>
+<g id="httpsWss">
+<rect x="634" y="322" width="250" height="82" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="759" y="352.5">HTTPS local</tspan><tspan x="759" y="375.5">+ WSS</tspan></text>
+</g>
+<g id="ingest">
+<rect x="958" y="322" width="290" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1103" y="352.5">webrtcbin y</tspan><tspan x="1103" y="375.5">vídeos locales</tspan></text>
+</g>
+<g id="sync">
+<rect x="1330" y="322" width="230" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1445" y="352.5">Sync Buffer</tspan><tspan x="1445" y="375.5">RTP/NTP</tspan></text>
+</g>
+<polyline points="254,363 334,363" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="554,363 634,363" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="884,363 958,363" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1248,363 1330,363" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1035,176 1035,220 610,220 610,306 759,306 759,322" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1445,176 1445,322" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="488" width="1592" height="190" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="522" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Composición y salidas</text>
+<g id="graphics">
+<rect x="334" y="558" width="250" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="459" y="588.5">Overlay grafismo</tspan><tspan x="459" y="611.5">alpha</tspan></text>
+</g>
+<g id="mixer">
+<rect x="726" y="558" width="250" height="82" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="851" y="588.5">Mixer</tspan><tspan x="851" y="611.5">GStreamer</tspan></text>
+</g>
+<g id="outputs">
+<rect x="1108" y="558" width="300" height="82" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1258" y="588.5">Monitores nativos,</tspan><tspan x="1258" y="611.5">multiview y REC</tspan></text>
+</g>
+<polyline points="1130,176 1130,236 590,236 590,470 459,470 459,558" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1445,404 1445,470 851,470 851,558" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="584,599 726,599" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="976,599 1108,599" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1258,558 1258,462 1590,462 1590,220 1228,220 1228,176" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+</svg>

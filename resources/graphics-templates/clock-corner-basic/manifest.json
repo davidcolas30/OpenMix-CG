@@ -1,0 +1,35 @@
+{
+  "id": "clock-corner-basic",
+  "name": "Reloj de Esquina",
+  "category": "clock",
+  "format": "html",
+  "version": "0.1.0",
+  "entryHtml": "template.html",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fields": [
+    {
+      "id": "label",
+      "label": "Etiqueta",
+      "type": "text",
+      "defaultValue": "DIRECTO",
+      "maxLength": 20
+    },
+    {
+      "id": "zoneLabel",
+      "label": "Zona visible",
+      "type": "text",
+      "defaultValue": "Madrid",
+      "maxLength": 24
+    },
+    {
+      "id": "timeZone",
+      "label": "Zona horaria IANA",
+      "type": "text",
+      "defaultValue": "Europe/Madrid",
+      "maxLength": 60
+    }
+  ]
+}

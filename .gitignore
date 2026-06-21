@@ -1,0 +1,14 @@
+node_modules/
+dist/
+out/
+src/native/build/
+.DS_Store
+Thumbs.db
+*.log*
+.eslintcache
+__pycache__/
+*.pyc
+*.swp
+*.swo
+*~
+tmp/

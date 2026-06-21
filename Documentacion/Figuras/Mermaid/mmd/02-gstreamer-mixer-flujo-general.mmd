@@ -1,0 +1,70 @@
+flowchart TB
+    subgraph Sources[Entradas]
+        SMPTE[Fuente 0 SMPTE]
+        WebRTC[Camara movil\nwebrtcbin + H264]
+        Local[Video local\nuridecodebin]
+        Graphics[Grafismo\nHTML/native alpha]
+        AudioRec[Audio local REC\nidentity ts-offset]
+    end
+
+    subgraph Timing[Normalizacion por slot]
+        Sync[Sync Buffer RTP/NTP]
+        SlotPool[Slots media 1-3\nWebRTC o video local]
+        SourceBus[Fuentes listas\npara el mixer]
+    end
+
+    subgraph Composition[Composicion]
+        LiveMix[Program y Preview\nselectores/compositores]
+        PGMRecComp[Program REC\n1080p dedicado]
+        MultiView[Multiview reducida\n15fps]
+    end
+
+    subgraph Outputs[Salidas principales]
+        NativeMonitors[Monitores Program y Preview\nsuperficies nativas]
+        MultiviewSink[Monitor multiview\nsuperficie nativa/WebRTC local]
+        Legacy[appsink/WebRTC monitor\nlegacy o diagnostico]
+        NativeRec[REC nativo\nencoder + muxer + filesink]
+    end
+
+    subgraph Monitoring[Miniaturas]
+        Thumbnails[Miniaturas 0-3]
+    end
+
+    WebRTC --> Sync
+    Sync --> SlotPool
+    Local --> SlotPool
+    SMPTE --> SourceBus
+    SlotPool --> SourceBus
+    SourceBus --> LiveMix
+    SourceBus --> PGMRecComp
+    SourceBus --> MultiView
+    Graphics --> LiveMix
+    Graphics --> PGMRecComp
+
+    LiveMix --> NativeMonitors
+    LiveMix --> Legacy
+    MultiView --> MultiviewSink
+    PGMRecComp --> NativeRec
+    AudioRec --> NativeRec
+    SourceBus --> Thumbnails
+
+
+    classDef ui fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#ffffff,stroke-width:1.5px;
+    class SMPTE,WebRTC,Local,SlotPool,SourceBus,AudioRec source;
+    class Sync,LiveMix,PGMRecComp,MultiView composition;
+    class NativeMonitors,MultiviewSink,Legacy,NativeRec output;
+    class Graphics graphics;
+    class Thumbnails monitoring;

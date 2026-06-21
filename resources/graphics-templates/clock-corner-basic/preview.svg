@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Reloj de esquina">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#49a5b8" />
+      <stop offset="100%" stop-color="#1f7c92" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="28" fill="#020617" />
+  <rect x="32" y="32" width="236" height="120" rx="24" fill="url(#card)" stroke="#475569" stroke-opacity="0.42" />
+  <rect x="50" y="50" width="86" height="28" rx="14" fill="url(#accent)" />
+  <text x="93" y="69" fill="#f8fafc" font-family="Aptos, Arial, sans-serif" font-size="13" font-weight="800" text-anchor="middle">DIRECTO</text>
+  <text x="220" y="69" fill="#bae6fd" font-family="Aptos, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">MADRID</text>
+  <text x="50" y="114" fill="#f8fafc" font-family="Aptos, Arial, sans-serif" font-size="38" font-weight="800">12:30:45</text>
+  <text x="50" y="138" fill="#e2e8f0" font-family="Aptos, Arial, sans-serif" font-size="15" font-weight="600">jueves, 14 de noviembre</text>
+</svg>

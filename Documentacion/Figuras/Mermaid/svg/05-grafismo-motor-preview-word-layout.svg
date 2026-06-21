@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="888" viewBox="0 0 1640 888" role="img">
+<rect width="1640" height="888" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937" stroke="#1f2937"/>
+</marker>
+</defs>
+<rect x="24" y="28" width="1592" height="174" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="62" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Control desde la interfaz</text>
+<g id="panel">
+<rect x="70" y="92" width="220" height="82" rx="0" fill="#111827" stroke="#64748b" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="180" y="122.5">Panel de</tspan><tspan x="180" y="145.5">grafismo</tspan></text>
+</g>
+<g id="api">
+<rect x="366" y="92" width="290" height="82" rx="0" fill="#111827" stroke="#4f96a7" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="511" y="122.5">window.openMix</tspan><tspan x="511" y="145.5">graphics</tspan></text>
+</g>
+<g id="handlers">
+<rect x="732" y="92" width="310" height="82" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="887" y="122.5">registerGraphics</tspan><tspan x="887" y="145.5">Handlers</tspan></text>
+</g>
+<g id="service">
+<rect x="1118" y="92" width="250" height="82" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1243" y="122.5">Graphics</tspan><tspan x="1243" y="145.5">Service</tspan></text>
+</g>
+<polyline points="290,133 366,133" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="656,133 732,133" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1042,133 1118,133" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="244" width="1592" height="326" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="278" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Renderizado de plantillas</text>
+<g id="htmlTemplate">
+<rect x="70" y="332" width="250" height="88" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="195" y="365.5">HTML/CSS/JS</tspan><tspan x="195" y="388.5">manifest + recursos</tspan></text>
+</g>
+<g id="nativeTemplate">
+<rect x="70" y="432" width="250" height="88" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="195" y="465.5">Native ticker-v1</tspan><tspan x="195" y="488.5">manifest declarativo</tspan></text>
+</g>
+<g id="htmlRenderer">
+<rect x="470" y="326" width="300" height="94" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="620" y="362.5">BrowserWindow</tspan><tspan x="620" y="385.5">offscreen HTML</tspan></text>
+</g>
+<g id="nativeRenderer">
+<rect x="470" y="434" width="300" height="88" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="620" y="467.5">Renderer native</tspan><tspan x="620" y="490.5">ticker-v1</tspan></text>
+</g>
+<g id="stack">
+<rect x="940" y="370" width="310" height="94" rx="0" fill="#111827" stroke="#8b7a5d" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1095" y="406.5">Composición de pila</tspan><tspan x="1095" y="429.5">con alpha</tspan></text>
+</g>
+<polyline points="320,376 470,373" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="320,476 470,478" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="770,373 940,405" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="770,478 940,430" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1243,174 1243,370" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="24" y="620" width="1592" height="240" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="820" y="654" text-anchor="middle" fill="#1f2937" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 21px; font-weight: 700;">Salida hacia previsualización y mixer</text>
+<g id="gfxSlot">
+<rect x="168" y="730" width="270" height="92" rx="0" fill="#111827" stroke="#64748b" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="303" y="765.5">Slot GFX de</tspan><tspan x="303" y="788.5">previsualización</tspan></text>
+</g>
+<g id="appsrc">
+<rect x="684" y="730" width="330" height="96" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="849" y="767.5">appsrc grafismo</tspan><tspan x="849" y="790.5">frame BGRA/RGBA con alpha</tspan></text>
+</g>
+<g id="mixer">
+<rect x="1240" y="730" width="276" height="96" rx="0" fill="#111827" stroke="#8d72aa" stroke-width="2"/>
+<text text-anchor="middle" dominant-baseline="middle" fill="#ffffff" style="font-family: Aptos, Helvetica Neue, Arial, sans-serif; font-size: 20px; font-weight: 650;"><tspan x="1378" y="767.5">Mixer GStreamer</tspan><tspan x="1378" y="790.5">Preview, Program y REC</tspan></text>
+</g>
+<polyline points="1040,464 1040,590 303,590 303,730" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1150,464 1150,590 620,590 620,686 849,686 849,730" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1014,778 1240,778" fill="none" stroke="#1f2937" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</svg>

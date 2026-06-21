@@ -1,0 +1,65 @@
+flowchart LR
+    subgraph Renderer[Renderer]
+        direction TB
+        UI[Panel de grafismo]
+        GfxSlot[Slot GFX de previsualizacion]
+    end
+
+    subgraph Bridge[Preload]
+        API[window.openMix.graphics]
+    end
+
+    subgraph MainProcess[Main Process]
+        direction TB
+        Handlers[registerGraphicsHandlers]
+        Service[GraphicsService]
+        HtmlRenderer[BrowserWindow offscreen HTML]
+        NativeRenderer[Renderer native ticker-v1]
+        Stack[Composicion de pila con alpha]
+        Handlers --> Service
+        Service --> HtmlRenderer
+        Service --> NativeRenderer
+        HtmlRenderer --> Stack
+        NativeRenderer --> Stack
+    end
+
+    subgraph Templates[Plantillas en disco]
+        direction TB
+        HtmlTemplate[HTML/CSS/JS\nmanifest + recursos]
+        NativeTemplate[Native ticker-v1\nmanifest declarativo]
+    end
+
+    subgraph Media[Plano de media nativo]
+        direction TB
+        MixerOverlay[(appsrc grafismo\nframe BGRA/RGBA con alpha)]
+        Mixer[Mixer GStreamer\nPreview Program REC]
+        MixerOverlay --> Mixer
+    end
+
+    UI --> API
+    API --> Handlers
+    HtmlTemplate --> HtmlRenderer
+    NativeTemplate --> NativeRenderer
+    Stack --> GfxSlot
+    Stack --> MixerOverlay
+
+
+    classDef ui fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#ffffff,stroke-width:1.5px;
+    class UI,GfxSlot renderer;
+    class API bridge;
+    class Handlers,Service,HtmlRenderer,NativeRenderer,Stack main;
+    class HtmlTemplate,NativeTemplate graphics;
+    class MixerOverlay,Mixer media;

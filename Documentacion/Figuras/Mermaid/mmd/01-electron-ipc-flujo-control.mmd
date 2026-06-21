@@ -1,0 +1,43 @@
+flowchart LR
+    subgraph Renderer[Renderer]
+        direction TB
+        UI[React UI]
+    end
+
+    subgraph Bridge[Secure bridge]
+        direction TB
+        Preload[Preload API]
+    end
+
+    subgraph MainProcess[Main Process]
+        direction TB
+        Ipc[IPC handler]
+        Service[MixerService]
+    end
+
+    Native[Addon nativo]
+
+    UI -->|Cut request| Preload
+    Preload -->|invoke| Ipc
+    Ipc -->|service call| Service
+    Service -->|native control| Native
+
+
+    classDef ui fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#ffffff,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#ffffff,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#ffffff,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#ffffff,stroke-width:1.5px;
+    class UI renderer;
+    class Preload bridge;
+    class Ipc,Service main;
+    class Native native;

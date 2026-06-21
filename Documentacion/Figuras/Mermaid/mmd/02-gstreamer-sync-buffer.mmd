@@ -1,0 +1,11 @@
+flowchart LR
+    WebRTC[webrtcbin] --> RTPQ[queue RTP]
+    RTPQ --> Depay[rtph264depay]
+    Depay --> Parse[h264parse]
+    Parse --> Decoder[vtdec o avdec_h264]
+    Decoder --> SyncQ[queue decodificada]
+    SyncQ --> Retimer[normalizador PTS a running-time del mixer]
+    Retimer --> SyncClock[identity clock gate + ts-offset]
+    SyncClock --> Tee[tee monitor / REC]
+    Tee --> Monitor[Rama monitor PGM/PVW]
+    Tee --> Rec[Rama REC 1080p]

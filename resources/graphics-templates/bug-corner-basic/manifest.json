@@ -1,0 +1,28 @@
+{
+  "id": "bug-corner-basic",
+  "name": "Bug de Esquina",
+  "category": "bug",
+  "format": "html",
+  "version": "0.1.0",
+  "entryHtml": "template.html",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fields": [
+    {
+      "id": "brand",
+      "label": "Marca",
+      "type": "text",
+      "defaultValue": "OPENMIX",
+      "maxLength": 14
+    },
+    {
+      "id": "tag",
+      "label": "Etiqueta",
+      "type": "text",
+      "defaultValue": "EN DIRECTO",
+      "maxLength": 28
+    }
+  ]
+}

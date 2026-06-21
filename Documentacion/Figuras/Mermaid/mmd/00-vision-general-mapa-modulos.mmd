@@ -1,0 +1,78 @@
+flowchart LR
+    subgraph UI[Operacion]
+        direction TB
+        React[Renderer React]
+        Panels[Panel mixer, grafismo, audio, atajos]
+        React --> Panels
+    end
+
+    subgraph Bridge[Puente seguro]
+        direction TB
+        Preload[Preload API]
+        IPC[IPC tipado]
+        Preload --> IPC
+    end
+
+    subgraph MainArea[Proceso principal]
+        direction TB
+        MainProc[Electron Main]
+        Services[Servicios Main\nMixer, Sources, Graphics, Output, Shortcuts]
+        HTTPS[HTTPS local]
+        WSS[WSS de senalizacion]
+        MainProc --> Services
+        Services --> HTTPS
+        Services --> WSS
+    end
+
+    subgraph Media[Plano de media nativo]
+        direction TB
+        NativeAddon[Addon N-API GStreamer]
+        Ingest[webrtcbin y videos locales]
+        Sync[Sync Buffer RTP/NTP]
+        GraphicsOverlay[Overlay grafismo alpha]
+        Mixer[Mixer GStreamer]
+        MediaOutputs[Monitores nativos, multiview y REC]
+        NativeAddon --> Ingest
+        Ingest --> Sync
+        Sync --> Mixer
+        GraphicsOverlay --> Mixer
+        Mixer --> MediaOutputs
+    end
+
+    subgraph Mobile[Cliente movil]
+        direction TB
+        QR[QR de conexion]
+        Browser[Navegador movil]
+        QR -->|abre enlace| Browser
+    end
+
+    React -->|comandos| Preload
+    IPC -->|handlers| MainProc
+    Services --> NativeAddon
+    Services --> GraphicsOverlay
+    Browser -->|carga /cam| HTTPS
+    Browser -->|media WebRTC| Ingest
+    WSS -->|join, offer e ICE| Services
+    MediaOutputs -->|handles, geometria y estado| MainProc
+    MainProc -->|estado y control| React
+
+
+    classDef ui fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef renderer fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef input fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef source fill:#111827,stroke:#64748b,color:#f8fafc,stroke-width:1.5px;
+    classDef bridge fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef composition fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef control fill:#111827,stroke:#4f96a7,color:#f8fafc,stroke-width:1.5px;
+    classDef main fill:#111827,stroke:#8b7a5d,color:#f8fafc,stroke-width:1.5px;
+    classDef output fill:#111827,stroke:#8b7a5d,color:#f8fafc,stroke-width:1.5px;
+    classDef media fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef graphics fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef monitoring fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef native fill:#111827,stroke:#8d72aa,color:#f8fafc,stroke-width:1.5px;
+    classDef mobile fill:#111827,stroke:#4ca6b8,color:#f8fafc,stroke-width:1.5px;
+    class React,Panels ui;
+    class Preload,IPC bridge;
+    class MainProc,Services,HTTPS,WSS main;
+    class NativeAddon,Ingest,Sync,GraphicsOverlay,Mixer,MediaOutputs media;
+    class QR,Browser mobile;

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+    viewport: configuración para móviles.
+    width=device-width → la página se ajusta al ancho del dispositivo
+    user-scalable=no → evita que el operador haga zoom accidentalmente
+  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>OpenMix-CG — Cámara</title>
+    <style>
+      /* Reset y estilos base para modo oscuro */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #111;
+        color: #eee;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        height: 100dvh; /* dvh = altura visual dinámica (evita barra de URL del móvil) */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* Preview de la cámara local: ocupa la mayor parte de la pantalla */
+      #preview-container {
+        flex: 1;
+        position: relative;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #localVideo {
+        width: auto;
+        height: auto;
+        max-width: var(--preview-max-width, 100%);
+        max-height: var(--preview-max-height, 100%);
+        object-fit: contain; /* Muestra el encuadre completo aunque queden bandas */
+        object-position: center center;
+        transition:
+          max-width 120ms ease-out,
+          max-height 120ms ease-out;
+      }
+
+      /* Indicador de estado superpuesto sobre el vídeo */
+      #status-overlay {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+      }
+
+      #status-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+        max-width: min(92vw, 420px);
+      }
+
+      #status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        pointer-events: auto;
+      }
+
+      .status-connecting {
+        background: #f59e0b;
+        color: #000;
+      }
+      .status-streaming {
+        background: #22c55e;
+        color: #000;
+      }
+      .status-error {
+        background: #ef4444;
+        color: #fff;
+      }
+      .status-idle {
+        background: #666;
+        color: #fff;
+      }
+
+      #status-meta,
+      #status-note {
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        line-height: 1.35;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        background: rgba(8, 12, 18, 0.72);
+        color: #e5edf7;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      #status-meta {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      #status-note {
+        border: 1px solid rgba(250, 204, 21, 0.35);
+        color: #fef08a;
+      }
+
+      /* Barra de controles inferior */
+      #controls {
+        flex-shrink: 0;
+        padding: 16px;
+        background: #1a1a1a;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      .btn:active {
+        opacity: 0.7;
+      }
+
+      .btn-primary {
+        background: #2563eb;
+        color: #fff;
+      }
+      .btn-secondary {
+        background: #333;
+        color: #fff;
+      }
+      .btn-danger {
+        background: #dc2626;
+        color: #fff;
+      }
+
+      /* Pantalla inicial antes de conectar */
+      #connect-screen {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      #connect-screen h1 {
+        font-size: 22px;
+      }
+      #connect-screen p {
+        color: #888;
+        font-size: 14px;
+        max-width: 300px;
+      }
+
+      /* Ocultar secciones por defecto */
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    Pantalla de conexión: se muestra al principio.
+    El token viene en la URL (?token=xxx) y se usa automáticamente.
+  -->
+    <div id="connect-screen">
+      <h1>OpenMix-CG</h1>
+      <p>Conectando con el mezclador...</p>
+      <div id="connect-status">Estableciendo conexión...</div>
+    </div>
+
+    <!-- Preview de la cámara (oculto hasta que la conexión esté lista) -->
+    <div id="preview-container" class="hidden">
+      <video id="localVideo" autoplay playsinline muted></video>
+      <div id="status-overlay">
+        <div id="status-info">
+          <span id="status-badge" class="status-connecting">Conectando</span>
+          <div id="status-meta" class="hidden"></div>
+          <div id="status-note" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles (ocultos hasta que la cámara esté activa) -->
+    <div id="controls" class="hidden">
+      <button id="btn-flip" class="btn btn-secondary">🔄 Voltear</button>
+      <button id="btn-profile" class="btn btn-secondary">🎯 360p</button>
+      <button id="btn-torch" class="btn btn-secondary hidden">💡 Luz</button>
+      <button id="btn-disconnect" class="btn btn-danger">⏹ Desconectar</button>
+    </div>
+
+    <script src="/cam/mobileClientConfig.js"></script>
+    <script src="/cam/mobileVideoPolicy.js"></script>
+    <script src="/cam/mobileSdpUtils.js"></script>
+    <script src="/cam/mobileClient.js"></script>
+  </body>
+</html>
