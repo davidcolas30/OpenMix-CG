@@ -5,7 +5,7 @@
   "description": "Plataforma de realización de vídeo multicámara en tiempo real",
   "main": "./out/main/index.js",
   "author": "David Colás",
-  "homepage": "https://github.com/davidcolas30/OpenMix-GC",
+  "homepage": "https://github.com/davidcolas30/OpenMix-CG",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write .",
