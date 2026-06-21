@@ -7,6 +7,12 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
 ## Cómo leer esta documentación
 
 - [Glosario.md](Glosario.md): índice de conceptos técnicos y audiovisuales.
+- [Instalacion.md](Instalacion.md): preparación del entorno, ejecución en
+  desarrollo y empaquetado macOS de prueba.
+- [Manual-usuario.md](Manual-usuario.md): guía de uso de la aplicación desde el
+  punto de vista del operador.
+- [Estado-del-proyecto.md](Estado-del-proyecto.md): funcionalidades validadas,
+  límites conocidos y próximos pasos.
 - [Arquitectura/](Arquitectura/): explicación de los módulos principales y sus
   flujos de datos.
 - [Figuras/](Figuras/): fuentes Mermaid y renders SVG/PNG de los diagramas de
