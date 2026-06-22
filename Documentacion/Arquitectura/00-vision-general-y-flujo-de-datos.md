@@ -208,7 +208,8 @@ mantienen puntos importantes como evolución técnica:
   palmada/claqueta servirá para fijar el signo y la magnitud del desfase
   residual, y para decidir una futura mezcla live con `audiomixer` para
   Program/streaming.
-- **Grafismo por textura compartida**: spike aislado para reducir copias CPU de los overlays HTML sin bloquear el roadmap principal.
+- **Grafismo por textura compartida**: línea experimental para reducir copias
+  CPU de los overlays HTML sin condicionar la ruta funcional validada.
 
 La arquitectura principal integra el Sync Buffer Manager RTP/NTP
 para multicámara, los vídeos locales como fuentes reproducibles del mixer, la
@@ -222,9 +223,9 @@ nativa y se controlan desde React solo mediante IPC de control. Los atajos
 siguen la misma regla: son una forma de expresar acciones existentes del
 operador y no transportan media ni conocen detalles del pipeline nativo.
 
-## Cómo usar esta documentación
+## Ruta de lectura recomendada
 
-La forma más útil de estudiar estos documentos suele ser esta:
+Para revisar la documentación técnica de forma ordenada:
 
 1. Leer primero este archivo para tener un mapa mental global.
 2. Ir después al documento de Electron e IPC para entender la base de la aplicación.

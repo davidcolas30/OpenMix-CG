@@ -1,19 +1,20 @@
-# Empaquetado macOS fase 1
+# Empaquetado macOS
 
-> Nota operativa viva. Esta fase busca una app `.app` de prueba, no una
-> distribución final autocontenida.
+> Nota operativa sobre la distribución macOS validada. La aplicación empaquetada
+> usa GStreamer como prerrequisito externo.
 
 ## Objetivo
 
 Generar una aplicación macOS `OpenMix-CG.app` con Electron Builder manteniendo
-GStreamer como prerrequisito externo. La ruta diaria de desarrollo no cambia:
+GStreamer como prerrequisito externo. La ruta de desarrollo no cambia:
 `pnpm dev` y los comandos con variables de entorno siguen siendo la forma
-principal de depurar y pulir el producto.
+principal de desarrollar y validar el producto.
 
 ## Prerrequisito externo
 
-En esta primera fase, el ordenador destino debe tener GStreamer instalado. En
-macOS Apple Silicon, la prueba validada enlaza contra librerías de Homebrew en
+En la distribución validada, el ordenador destino debe tener GStreamer
+instalado. En macOS Apple Silicon, la prueba validada enlaza contra librerías
+de Homebrew en
 `/opt/homebrew/opt/gstreamer`.
 
 Comprobaciones recomendadas antes de abrir la app empaquetada:
@@ -85,15 +86,16 @@ La prueba local confirma:
   falta firma de desarrollador y notarizacion.
 - Se usa `com.apple.security.cs.disable-library-validation` para permitir que
   la app ad-hoc cargue Electron Framework y dylibs externas de GStreamer. Es
-  aceptable para esta fase de prueba, pero debe revisarse para distribución.
+  aceptable para la validación local, pero debe revisarse para distribución.
 - El nombre de producto y ventana ya está unificado como `OpenMix-CG`, y los
   assets base de marca ya existen para UI y empaquetado. Para una release
   pública se deben validar el icono definitivo de Dock/paquete en la app
   generada, la firma, la notarizacion y los artefactos de distribución.
 
-## Fase posterior
+## Distribución autocontenida
 
-La siguiente fase de despliegue consistiria en incluir el runtime de GStreamer
-dentro del bundle o en un instalador propio. Esa fase exige resolver librerías,
-plugins, `gst-plugin-scanner`, rutas internas y firma/notarizacion con más
-cuidado. No debe mezclarse con la validación funcional de esta fase.
+La evolución natural del despliegue consistiria en incluir el runtime de
+GStreamer dentro del bundle o en un instalador propio. Ese empaquetado exige
+resolver librerías, plugins, `gst-plugin-scanner`, rutas internas y
+firma/notarizacion con más cuidado. No debe mezclarse con la validación
+funcional de la aplicación.

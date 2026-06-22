@@ -172,7 +172,7 @@ El Sync Buffer Manager se coloca después de recibir y decodificar WebRTC, pero 
 - No rompe Preview/Program, porque el mixer sigue recibiendo una fuente normal.
 - No duplica trabajo, porque monitor y REC heredan la misma decisión temporal.
 - No mueve vídeo por IPC, porque todo ocurre dentro de GStreamer.
-- No se mezcla con el spike de grafismo por textura compartida.
+- No depende de la línea experimental de grafismo por textura compartida.
 
 La implementación tiene dos capas. La primera normaliza el PTS de cada peer WebRTC al `running-time` del mixer padre y suaviza jitter con una cola posterior a decode. Esa normalización es clave cuando la segunda cámara entra tarde: su timeline RTP local no debe parecer "antiguo" frente al compositor que ya estaba funcionando. Además, si una cámara llega con discontinuidades grandes de PTS, el manager las cuenta como `corrected` y mantiene una cadencia continua. La segunda capa, una compuerta `identity sync=true`, queda apagada por defecto: en pruebas reales con dos cámaras redujo la salida a unos 3-4fps y llenó la cola, congelando multiview y Preview. Retiming solo se arma por defecto con al menos dos cámaras WebRTC que ya hayan entregado frames decodificados (`OPENMIX_SYNC_BUFFER_MIN_PEERS=2`), de modo que una única cámara o una segunda cámara a medio negociar mantienen bypass real: cola sin límite/leaky, clock apagado, `single-segment=false`, buffers sin modificar y sin log periódico del manager desde el hilo de streaming. `OPENMIX_SYNC_BUFFER_CLOCK=on` se conserva como guarda experimental para investigar backpressure, no como ruta operativa.
 

@@ -27,8 +27,7 @@ Gracias a N-API, el proyecto puede cargar ese addon como un módulo Node.js y pe
 
 ### Estructura interna del addon
 
-La implementación nativa ya no se concentra en un único fichero C++ grande. El
-addon se organiza por carpetas de dominio dentro de `src/native/`:
+El addon se organiza por carpetas de dominio dentro de `src/native/`:
 
 - `addon/`: punto de entrada N-API (`gstreamer_addon.cpp`), tabla de exports,
   estado global, cableado entre contextos y preparación del entorno GStreamer.
@@ -50,10 +49,10 @@ addon se organiza por carpetas de dominio dentro de `src/native/`:
 - `sync/`: Sync Buffer Manager multicámara basado en RTP/NTP.
 
 Esta separación no cambia la frontera arquitectónica: JavaScript sigue viendo
-un solo addon `gstreamer_addon.node`. La diferencia es interna: el código queda
-más navegable porque el punto de entrada no mezcla inicializacion,
-estado, parsing de variables de entorno, creación de pipeline, WebRTC, REC,
-monitores y grafismos en el mismo archivo.
+un solo addon `gstreamer_addon.node`. Internamente, cada dominio mantiene sus
+responsabilidades cerca de los elementos GStreamer que controla, lo que facilita
+seguir el flujo de media sin mezclar pipeline, WebRTC, REC, monitores y
+grafismos en el mismo punto de entrada.
 
 ## Flujo general del mixer
 
@@ -178,7 +177,7 @@ Es un elemento que extrae frames del pipeline hacia código de aplicación. En O
 
 Es el elemento contrario: permite empujar buffers creados por la aplicación hacia un pipeline. En OpenMix-CG se sigue usando para grafismo nativo y para caminos históricos de compatibilidad.
 
-Esta era la arquitectura puente inicial. En la reestructuración de rendimiento, los slots WebRTC pasan a usar `input-selector`: el stream decodificado se enlaza dentro del mismo pipeline del mixer y ya no necesita extraerse con `appsink` para reinyectarse con `appsrc`.
+La ruta validada para slots WebRTC usa `input-selector`: el stream decodificado se enlaza dentro del mismo pipeline del mixer y ya no necesita extraerse con `appsink` para reinyectarse con `appsrc`.
 
 ### Rutas dinámicas de fuentes: WebRTC y vídeo local
 
@@ -230,7 +229,8 @@ multiview nativa a 15fps, HUD activo y `OPENMIX_MULTIVIEW_BARS=static`. En la
 prueba del 2026-06-02 con dos cámaras, Sync Buffer NTP y stats WebRTC apagadas,
 el tramo estable final quedo alrededor de `47.5%` total y `46.6%` en Main. La
 superficie WebRTC sigue disponible como fallback/A-B, pero la ruta nativa ya no
-se considera un spike pendiente: es parte del perfil operativo validado.
+se considera una línea experimental pendiente: es parte del perfil operativo
+validado.
 
 La primera guarda de optimización de esa rama es
 `OPENMIX_MULTIVIEW_SOURCE_FPS`. Con valor `15` por defecto, cada slot pasa por
@@ -504,7 +504,7 @@ futuras capas de composición.
 
 ### Preroll
 
-Es la fase de preparación del pipeline antes de producir salida live. Este concepto fue especialmente importante durante el fallo de pantalla negra: algunos `appsink` de preview estaban bloqueando la transición a `PLAYING`.
+Es la etapa de preparación del pipeline antes de producir salida live. Este concepto fue especialmente importante durante el fallo de pantalla negra: algunos `appsink` de preview estaban bloqueando la transición a `PLAYING`.
 
 ### Fuente
 
@@ -557,7 +557,7 @@ Opciones evaluadas:
 | WebRTC local GStreamer -> Renderer                                    | GStreamer ya tiene `webrtcbin`; Electron/Chromium puede recibir un `MediaStreamTrack` y pintarlo con `<video>` | Añade encode/decode local de PGM/PVW y algo de latencia                                                              | Fue útil como prototipo A/B, pero no debe sustituir a la ruta nativa de Program/Preview salvo diagnóstico explícito                                                                      |
 | Sink nativo (`glimagesink`, `osxvideosink`) controlado desde Electron | GStreamer puede renderizar con sinks nativos y algunos implementan `GstVideoOverlay`                           | Integrar ventanas/superficies nativas dentro de una UI React/Electron requiere sincronizar geometría y ciclo de vida | Ruta preferente para monitores grandes cuando se busca rendimiento; `glimagesink` es el valor protegido en macOS al activar `OPENMIX_BIG_MONITORS_SURFACE=native`; ver `ADR-0007` |
 | WebCodecs con chunks codificados                                      | Reduce mucho el volumen frente a I420 crudo y permite decodificar en Chromium                                  | Hay que disenar transporte, timestamps, empaquetado H264/keyframes y backpressure                                    | Más experimental y menos directo que WebRTC                                                                                                                                                |
-| Shared memory / shared texture                                        | Evita copias grandes si se implementa bien                                                                     | Requiere módulo nativo especifico por plataforma y gestión manual de sincronización                                  | Para monitores no es el frente inmediato. Para grafismo HTML es el spike aislado descrito en `ADR-0009`                                                                                  |
+| Shared memory / shared texture                                        | Evita copias grandes si se implementa bien                                                                     | Requiere módulo nativo especifico por plataforma y gestión manual de sincronización                                  | Para monitores no es el frente inmediato. Para grafismo HTML es la línea experimental descrita en `ADR-0009`                                                                             |
 | HLS/DASH/local HTTP                                                   | Fácil de servir y reproducir                                                                                   | Latencia demasiado alta para monitorización de realización                                                           | No encaja con Preview/Program en vivo                                                                                                                                                    |
 
 La ruta WebRTC local de monitorización se evaluo así:
@@ -576,7 +576,7 @@ El objetivo de esa prueba no era sustituir la señal final ni la grabación. Sir
 
 La grabación local ya no toma frames crudos desde un `appsink` 1080p para escribirlos en FFmpeg desde Electron. Ese diseño fue útil como vertical slice inicial porque permitia validar la UI de REC, los contratos IPC y la gestión de archivos con poco riesgo. Sin embargo, tenía un problema estructural: cada frame final del Program cruzaba la frontera GStreamer -> Node.js como buffer BGRA de alta resolución.
 
-La reestructuración introduce una rama nativa dinámica:
+La grabación se implementa mediante una rama nativa dinámica:
 
 ```mermaid
 flowchart LR
@@ -890,7 +890,7 @@ En el entorno de desarrollo validado se han encontrado librerías de plugins GSt
 En este proyecto, GStreamer no ha sido solo una elección tecnológica; también ha condicionado varias decisiones de depuración:
 
 - La pixelación a largo plazo no estaba en la UI, sino en la gestión RTP previa a la decodificación.
-- La pantalla negra tras el refactor de slots no estaba en React, sino en el preroll de ramas `appsink` del mixer.
+- La pantalla negra observada en pruebas de slots no estaba en React, sino en el preroll de ramas `appsink` del mixer.
 - El aislamiento entre plano nativo y renderer ha sido útil para saber en que lado buscar el fallo.
 
 ## Relación con módulos futuros

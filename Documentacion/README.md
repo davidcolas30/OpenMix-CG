@@ -19,8 +19,8 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
   arquitectura principales.
 - [ADRs/](ADRs/): decisiones de arquitectura y resolución de incidencias
   relevantes.
-- [Notas/empaquetado-macos-fase-1.md](Notas/empaquetado-macos-fase-1.md): estado
-  del empaquetado macOS con GStreamer externo.
+- [Notas/empaquetado-macos.md](Notas/empaquetado-macos.md):
+  validación del empaquetado macOS con GStreamer externo.
 
 ## Estado de la versión
 
@@ -43,20 +43,16 @@ El proyecto tiene un MVP funcional con:
 - REC nativo con audio local validado a nivel MVP: MP4 reproducible con vídeo
   1080p en movimiento y audio AAC local. El ajuste fino de milisegundos se
   reserva para la prueba de claqueta.
-- empaquetado macOS fase 1 validado como `.app` de prueba con GStreamer externo
+- empaquetado macOS validado como `.app` de prueba con GStreamer externo
   como prerrequisito; la ruta de desarrollo con `pnpm dev` sigue intacta.
 - nombre de producto y ventana unificados como **OpenMix-CG**, con assets de
   marca versionados para UI, documentación y empaquetado.
-- refactor interno del addon nativo y servicios de UI/REC/grafismos:
-  el comportamiento público no cambia, pero el código queda dividido por
-  dominios para facilitar mantenimiento, pruebas y revisión técnica.
+- addon nativo y servicios de UI/REC/grafismos organizados por dominios para
+  facilitar mantenimiento, pruebas y revisión técnica.
 
 ## Líneas de evolución
 
-1. **Producto principal:** estabilizar audio, REC, fuentes locales, multiview,
-   empaquetado y experiencia de operador.
-2. **Optimizaciones experimentales:** estudiar transporte de grafismo por
-   `useSharedTexture`/`IOSurface` para reducir copias CPU sin bloquear la rama
-   funcional.
-
-Ver [ADRs/ADR-0009-ramas-para-roadmap-y-shared-texture.md](ADRs/ADR-0009-ramas-para-roadmap-y-shared-texture.md).
+1. **Producto principal:** empaquetado, experiencia de operador, audio,
+   fuentes locales, multiview y grabación.
+2. **Optimizaciones experimentales:** transporte de grafismo por
+   `useSharedTexture`/`IOSurface` para reducir copias CPU en overlays HTML.

@@ -115,7 +115,7 @@ Esta es una de las ideas más importantes de la arquitectura:
 
 En OpenMix-CG, Electron IPC debe usarse casi solo para el plano de control.
 
-Durante fases tempranas, los frames de Preview/Program viajaban por IPC porque era la forma más simple de validar el mixer. Ese camino queda como ruta legacy o de diagnóstico. La ruta de rendimiento preferente para los monitores grandes usa superficies nativas de GStreamer: el renderer envía geometría, estados y acciones, pero no recibe cada frame como un mensaje IPC.
+En las validaciones iniciales, los frames de Preview/Program podían viajar por IPC porque era la forma más simple de comprobar el mixer. Ese camino queda como ruta legacy o de diagnóstico. La ruta de rendimiento preferente para los monitores grandes usa superficies nativas de GStreamer: el renderer envía geometría, estados y acciones, pero no recibe cada frame como un mensaje IPC.
 
 Las miniaturas diagnósticas y algunas previews reducidas pueden seguir usando rutas de monitorización especificas porque no representan la salida final ni la ruta de grabación. La multiview reducida tiene ruta nativa y ruta WebRTC bajo guarda, pero tampoco debe arrastrar Preview/Program grandes a IPC crudo.
 

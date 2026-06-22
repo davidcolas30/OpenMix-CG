@@ -109,7 +109,7 @@ El empaquetado macOS incluye:
 - las plantillas de grafismo de `resources/graphics-templates`;
 - la página móvil de cámara servida por el QR.
 
-GStreamer no se incluye dentro del bundle en esta fase. El equipo destino debe
+GStreamer no se incluye dentro del bundle validado. El equipo destino debe
 tenerlo instalado previamente.
 
 ## Problemas frecuentes

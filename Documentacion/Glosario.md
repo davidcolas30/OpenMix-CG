@@ -216,7 +216,7 @@ Documento recomendado para traducir la jerga de realización al funcionamiento c
 
 ### Módulo 5. Grafismo y rótulos
 
-Documento recomendado para entender cómo se cargan plantillas de grafismo, cómo se editan sus campos y por qué la Fase 4 arranca con un motor preview-first antes de integrarse con el mixer.
+Documento recomendado para entender cómo se cargan plantillas de grafismo, cómo se editan sus campos y cómo se integran con el mixer.
 
 - Archivo: [Arquitectura/05-grafismo-y-rótulos.md](Arquitectura/05-grafismo-y-rotulos.md)
 - Conceptos cubiertos:
@@ -247,22 +247,22 @@ Documento recomendado para entender por qué OpenMix-CG no necesita mover todo e
   - Renderizador especializado
   - Manifiesto declarativo
 
-### Investigación de grafismo por textura compartida
+### Grafismo por textura compartida
 
-Documento recomendado para entender por qué el spike de optimización profunda se separa del roadmap principal.
+Concepto útil para entender una posible optimización futura del transporte de
+overlays HTML.
 
-- Archivo: [ADRs/ADR-0009-ramas-para-roadmap-y-shared-texture.md](ADRs/ADR-0009-ramas-para-roadmap-y-shared-texture.md)
 - Conceptos cubiertos:
   - `useSharedTexture`
   - `IOSurface`
   - CEF / `cefsrc`
   - GstWPE / `wpesrc`
   - fallback RGBA/appsrc
-  - spike aislado frente a roadmap principal
+  - línea experimental aislada frente al producto validado
 
-## Como mantener este glosario a partir de ahora
+## Criterio de mantenimiento del glosario
 
-Cuando aparezca un concepto nuevo, conviene decidir primero a qué módulo pertenece:
+Cuando se documente un concepto nuevo, conviene decidir primero a qué módulo pertenece:
 
 1. Si explica arquitectura Electron, preload o contratos entre procesos, va a Electron e IPC.
 2. Si explica pipelines, mezcla, salida de frames o diagnóstico nativo, va a GStreamer y mixer.
@@ -273,15 +273,23 @@ Después, si el término cambia la forma de entender el sistema, se actualiza es
 
 ## Alcance de la documentación
 
-Estos documentos cubren lo ya construido en Fase 0, Fase 1, Fase 2 y Fase 3, el arranque arquitectónico de Fase 4 para el motor de grafismo, la integración real de overlays con el mixer, la primera implementación del camino de plantillas nativas especializadas, las transiciones básicas del mixer y el cierre funcional del MVP de Fase 5 en el módulo de output.
+Esta documentación pública cubre el MVP funcional de OpenMix-CG: mixer
+Preview/Program, conexión de cámaras móviles por WebRTC, monitores nativos,
+multiview reducida, grafismo HTML/native, vídeos locales como fuentes,
+grabación nativa del Program y primera integración de audio local para REC.
 
-En el alcance documentado, Fase 5 puede darse por cerrada a nivel MVP: grabación local del Program con grafismo superpuesto, ajustes persistentes de grabación, ruta dedicada de mayor resolución para REC y chequeo de espacio libre antes de iniciar. La reestructuración posterior de Fase 1 mueve la escritura de REC al plano de media nativo: Electron conserva el control de inicio/parada y estado, pero ya no recibe los frames BGRA 1080p para grabar. El chequeo se hace sobre la carpeta real de destino, así que una ruta montada en disco externo funciona como destino válido mientras el volumen siga presente. Si esa carpeta desaparece, el sistema falla con un mensaje claro en lugar de recrearla silenciosamente en otra unidad.
+El alcance técnico se centra en explicar cómo se separan el plano de control
+Electron/React y el plano de media GStreamer/WebRTC, cómo se organizan los
+módulos principales y qué límites operativos tiene la versión publicada. La
+documentación complementa el código fuente y el manual de usuario; no sustituye
+a la memoria académica del proyecto.
 
-En la versión documentada del producto, Sync Buffer RTP/NTP, vídeos locales, atajos configurables, multiview reducida y REC nativo con audio local quedan cerrados a nivel MVP. La pestaña de audio local diagnóstico permite onda, pico, delay sugerido y referencia visual nativa; ese delay puede aplicarse a la primera rama de audio local de REC nativo bajo guarda. Como mejora futura se plantea extender el modelo a mezcla live de Program/streaming si el producto lo necesita. La investigación de shared texture se mantiene como línea experimental independiente.
+Las líneas de evolución documentadas son: empaquetado autocontenido, validación
+en Windows y Linux, mezcla de audio multifuente, contribución remota con TURN y
+optimización experimental de grafismo mediante texturas compartidas.
 
-Tras la fase de pulido, el producto se nombra de forma unificada como
-**OpenMix-CG** en `package.json`, Electron Builder, la ventana principal y los
-assets de marca versionados. Además, la refactorizacion interna separa
-el addon nativo y varios servicios por dominio sin cambiar la frontera
-arquitectónica: Electron/React siguen enviando control, y GStreamer sigue
-conservando el plano de media.
+El producto se nombra de forma unificada como **OpenMix-CG** en `package.json`,
+Electron Builder, la ventana principal y los assets de marca versionados. El
+addon nativo y los servicios principales están organizados por dominios sin
+cambiar la frontera arquitectónica: Electron/React envían control, y GStreamer
+conserva el plano de media.

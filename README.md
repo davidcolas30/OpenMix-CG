@@ -113,7 +113,7 @@ Para generar un `.dmg` de prueba:
 pnpm run package:mac:dmg
 ```
 
-La fase de empaquetado validada usa GStreamer como dependencia externa: el equipo donde se ejecute la app debe tener una instalación compatible de GStreamer.
+El empaquetado validado usa GStreamer como dependencia externa: el equipo donde se ejecute la app debe tener una instalación compatible de GStreamer.
 
 ## Documentación
 
@@ -121,10 +121,6 @@ La fase de empaquetado validada usa GStreamer como dependencia externa: el equip
 - [Manual de usuario](Documentacion/Manual-usuario.md)
 - [Estado del proyecto](Documentacion/Estado-del-proyecto.md)
 - [Índice de documentación técnica](Documentacion/README.md)
-- [Arquitectura general y flujo de datos](Documentacion/Arquitectura/00-vision-general-y-flujo-de-datos.md)
-- [GStreamer y mixer](Documentacion/Arquitectura/02-gstreamer-y-mixer.md)
-- [WebRTC y señalización local](Documentacion/Arquitectura/03-webrtc-y-senalizacion-local.md)
-- [Grafismo y rótulos](Documentacion/Arquitectura/05-grafismo-y-rotulos.md)
 
 ## Estado del proyecto
 

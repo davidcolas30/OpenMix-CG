@@ -6,18 +6,22 @@ Este módulo explica como OpenMix-CG incorpora grafismo editable sin convertir l
 
 La idea no es dibujar overlays a mano desde React, sino cargar plantillas preparadas por un diseñador y permitir que el realizador edite solo el contenido necesario desde la aplicación.
 
-Este documento conserva la explicación de arranque de Fase 4, pero también recoge el estado de la versión: el grafismo ya no es solo preview-first. OpenMix-CG tiene integración real con el mixer mediante frames con alpha hacia GStreamer, un slot GFX de previsualización y un modelo híbrido para overlays continuos.
+Este documento describe el motor de grafismo de la versión publicada: plantillas
+HTML/native, edición de campos, slot GFX de previsualización e integración real
+con el mixer mediante frames con alpha hacia GStreamer.
 
-## Decision de arranque de Fase 4
+## Decisión de diseño
 
-El arranque de este módulo siguio una estrategia **preview-first**:
+El módulo sigue una estrategia **preview-first**:
 
-- **caso guia inicial**: un `lower third` HTML/CSS/JS
+- **caso guía de referencia**: un `lower third` HTML/CSS/JS
 - **motor base**: `BrowserWindow` oculta con render offscreen
 - **plano de control**: IPC tipado entre Renderer, Preload y Main
-- **objetivo de esa iteración**: descubrir plantillas, cargarlas, editar campos y disparar `show`/`hide`
+- **objetivo operativo**: descubrir plantillas, cargarlas, editar campos y disparar `show`/`hide`
 
-Esa decisión fue histórica y sigue siendo importante para entender el orden de construcción. La composición real sobre el mixer ya existe en la versión implementada.
+La composición real sobre el mixer forma parte de la versión implementada: el
+motor renderiza grafismos con alpha y el pipeline nativo los mezcla sobre
+Preview, Program y REC.
 
 ## Idea central
 
@@ -100,9 +104,9 @@ flowchart LR
     class MixerOverlay,Mixer media;
 ```
 
-## Que entro en la primera base
+## Capacidades del motor
 
-En la iteración de arranque de Fase 4 quedaron dentro del alcance estas piezas:
+El motor de grafismo incluye estas piezas:
 
 - contratos IPC especificos del módulo `graphics`
 - servicio `GraphicsService` en el Main Process
@@ -114,18 +118,18 @@ En la iteración de arranque de Fase 4 quedaron dentro del alcance estas piezas:
 - acciones semánticas `show` y `hide`
 - plantilla de referencia `lower-third-basic`
 
-## Que no entraba todavía
+## Fuera del alcance implementado
 
-En esa iteración se dejo fuera, de manera deliberada:
+El motor no intenta cubrir todos los formatos o flujos posibles. Quedan fuera de
+la versión publicada:
 
-- composición real sobre Program o Preview dentro del mixer
-- envío de frames de grafismo hacia GStreamer
 - soporte real de Lottie o SVG más alla del contrato previsto
 - galeria completa de plantillas en la UI React
 - persistencia avanzada de presets del operador
 - timeline, cola de gráficos o automatizaciones de realización
 
-Esto no fue una carencia accidental. Fue una decisión para estabilizar primero la frontera entre plantilla, servicio y UI antes de abrir el camino de media real.
+Esta acotación mantiene claro el contrato entre plantilla, servicio de grafismo,
+UI y camino de media.
 
 ## Estado del camino de grafismo
 
@@ -146,11 +150,12 @@ El estado implementado del módulo es:
 - La escena HTML agregada por iframes queda como optimización experimental bajo
   `OPENMIX_GRAPHICS_SCENE_RENDERER=on`: reducía ventanas offscreen, pero en
   prueba real no preservo bien la transparencia entre mosca y reloj simultaneos.
-- La optimización profunda pendiente es reducir copias de la ruta HTML con un spike aislado de `useSharedTexture`/`IOSurface`; ver `ADR-0009`.
+- La optimización profunda pendiente es reducir copias de la ruta HTML mediante
+  una línea experimental de `useSharedTexture`/`IOSurface`; ver `ADR-0009`.
 
 ## Estructura de archivos adoptada
 
-La base técnica creada en este arranque sigue esta organización:
+La base técnica sigue esta organización:
 
 ```text
 resources/
@@ -234,6 +239,8 @@ La solución adoptada queda documentada en [ADR-0006](../ADRs/ADR-0006-estados-d
 
 ## Evolución híbrida documentada
 
-Una vez estabilizado el arranque preview-first y medidas las limitaciones de las plantillas continuas en Chromium offscreen, la evolución híbrida del módulo queda descrita en [06-grafismo-nativo-y-modelo-híbrido.md](06-grafismo-nativo-y-modelo-hibrido.md).
+La evolución híbrida del módulo queda descrita en [06-grafismo-nativo-y-modelo-híbrido.md](06-grafismo-nativo-y-modelo-hibrido.md).
 
-Ese documento no sustituye esta fase de arranque. La extiende con una propuesta concreta para mantener HTML donde aporta flexibilidad y abrir un `format: native` para familias de overlays continuos como el ticker.
+Ese documento amplía el modelo con una propuesta concreta para mantener HTML
+donde aporta flexibilidad y abrir un `format: native` para familias de overlays
+continuos como el ticker.

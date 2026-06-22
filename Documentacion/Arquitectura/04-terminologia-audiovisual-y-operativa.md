@@ -97,7 +97,7 @@ Es un patrón de prueba clásico de televisión. En OpenMix-CG se usa como fuent
 
 ## Terminología de grafismo que ya conviene dominar
 
-El motor de grafismo ya forma parte del MVP, así que estos términos son vocabulario operativo real de la aplicación, no solo preparación para una fase futura.
+El motor de grafismo ya forma parte del MVP, así que estos términos son vocabulario operativo real de la aplicación, no solo preparación para una mejora futura.
 
 ### Rótulo
 
