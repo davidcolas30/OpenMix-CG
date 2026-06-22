@@ -473,7 +473,7 @@ Variables de ajuste:
 - `OPENMIX_SYNC_BUFFER_NTP_ADJUST_INTERVAL_MS`: intervalo mínimo entre reajustes de delay; por defecto `500`.
 - `OPENMIX_SYNC_BUFFER_NTP_MAX_STEP_MS`: cambio máximo permitido en cada reajuste de delay; por defecto `20`.
 
-Esta decisión toma prestada una idea común de los sistemas estudiados: el reloj del grafo multimedia debe mandar. Voctomix refuerza el patrón de core GStreamer separado de UI, OBS/libobs refuerza la separación entre lifecycle de fuentes y render, y VDO.Ninja/LiveKit inspiran la parte WebRTC; ninguno resuelve directamente nuestro caso de varias cámaras móviles WebRTC dentro de un mixer local, así que OpenMix-CG necesita esta capa propia antes del compositor.
+Esta decisión toma prestada una idea común de los sistemas estudiados: el reloj del grafo multimedia debe mandar. Voctomix refuerza el patrón de core GStreamer separado de UI, OBS/libobs refuerza la separación entre ciclo de vida de fuentes y render, y VDO.Ninja/LiveKit inspiran la parte WebRTC. Ninguno de esos sistemas resuelve directamente el caso de varias cámaras móviles WebRTC dentro de un mixer local, por lo que OpenMix-CG incorpora esta capa propia antes del compositor.
 
 ### Compositor
 

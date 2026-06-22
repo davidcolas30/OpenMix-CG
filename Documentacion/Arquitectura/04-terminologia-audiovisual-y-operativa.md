@@ -4,7 +4,8 @@
 
 Este documento traduce la jerga de realización audiovisual al funcionamiento concreto de OpenMix-CG.
 
-Su objetivo no es solo definir palabras, sino ayudarte a explicar qué significan dentro del flujo real de operación del sistema.
+Su objetivo no es solo definir palabras, sino relacionarlas con el flujo real
+de operación del sistema.
 
 ## Flujo operativo básico
 
