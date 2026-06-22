@@ -21,6 +21,8 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
   relevantes.
 - [Notas/empaquetado-macos.md](Notas/empaquetado-macos.md):
   validación del empaquetado macOS con GStreamer externo.
+- [Notas/gstreamer-detalles-operativos.md](Notas/gstreamer-detalles-operativos.md):
+  detalles de diagnostico, rendimiento y compatibilidad del pipeline.
 
 ## Estado de la versión
 

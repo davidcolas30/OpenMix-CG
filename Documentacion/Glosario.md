@@ -119,60 +119,25 @@ Documento recomendado para entender cómo se reparten responsabilidades entre UI
 
 ### Módulo 2. GStreamer y mixer
 
-Documento recomendado para entender el addon nativo, el pipeline del mixer y cómo se construyen Program, Preview y miniaturas.
+Documento recomendado para entender el addon nativo, el pipeline del mixer y cómo se construyen Program, Preview, multiview y REC.
 
 - Archivo: [Arquitectura/02-gstreamer-y-mixer.md](Arquitectura/02-gstreamer-y-mixer.md)
+- Nota técnica complementaria: [Notas/gstreamer-detalles-operativos.md](Notas/gstreamer-detalles-operativos.md)
 - Conceptos cubiertos:
   - Addon nativo
   - N-API
-  - ThreadSafeFunction
   - Pipeline de GStreamer
-    - Bus de GStreamer
-    - GstClock
-    - appsink
-    - appsrc
-    - `clocksync`
-    - backpressure en colas de ficheros locales
-    - retimer PTS de vídeo local a `running-time`
-    - pausa de vídeo local por bloqueo de pad
-    - cue de primer frame `OPENMIX_LOCAL_VIDEO_CUE_PAUSE_MS`
-    - ruta A/B secundaria para vídeo local en Program
-    - loop de vídeo local
-    - política Auto Program para vídeo local
-    - contención de `FLUSH_START/FLUSH_STOP` en vídeo local
-    - entrada negra live de reposo por slot
-    - precalentamiento `OPENMIX_LOCAL_VIDEO_PREWARM`
-    - Sync Buffer Manager
-    - guarda `OPENMIX_SYNC_BUFFER_MIN_PEERS`
-    - normalización PTS a `running-time`
-    - `identity single-segment`
-    - `videorate` de REC a 30fps
-    - retimer raw de REC antes del encoder
-    - frame gate realtime de REC
-    - retimer secuencial de REC
-    - `GstBufferList` en REC
-    - fondo negro de `comp_pgm_record`
-    - REC como consumidor de Program
-    - overlay final de grafismo en REC
-    - selector WebRTC de monitor
-    - selector WebRTC de REC
-    - vídeo local como fuente del mixer
-    - registro de ocupación de slots
-    - superficie nativa de multiview
-    - `GstVideoOverlay`
-    - buffer visual diagnóstico de Audio
+  - Plano de media frente a plano de control
+  - Program, Preview, CUT y AUTO
+  - Selectores, compositores, `valve`, `appsrc` y `appsink`
+  - Monitores nativos y multiview reducida
+  - Fuentes WebRTC y vídeos locales
+  - Sync Buffer Manager con RTP/NTP
+  - REC nativo 1080p con audio local opcional
+  - Rutas de diagnóstico y compatibilidad
   - Encoder H.264 de grabación
   - VideoToolbox
   - x264enc
-  - Compositor
-  - Pad de solicitud
-  - Alpha
-  - valve
-  - Z-order
-  - Preroll
-  - Fuente
-  - Miniatura
-  - Barras SMPTE
 
 ### Módulo 3. WebRTC, señalización y conectividad local
 
