@@ -4,7 +4,7 @@
 
 Este módulo describe la siguiente evolución del motor de grafismo de OpenMix-CG una vez comprobado que no todas las plantillas se comportan igual desde el punto de vista del rendimiento.
 
-La idea no es abandonar el motor HTML, sino decidir con criterio que familias de overlays deben seguir en Chromium y cuales conviene sacar a un renderer nativo.
+La idea no es abandonar el motor HTML, sino decidir con criterio qué familias de overlays deben seguir en Chromium y cuáles conviene sacar a un renderer nativo.
 
 ## Punto de partida real
 
@@ -21,7 +21,7 @@ En las mediciones del ticker se ha observado este patrón:
 - overlays quietos una vez al aire: coste residual bajo
 - ticker continuo: coste sostenido alto incluso sin el mixer iniciado
 
-La instrumentacion del `paint` offscreen añade un dato clave:
+La instrumentación del `paint` offscreen añade un dato clave:
 
 - cobertura dirty media aproximada del ticker: 4.2%
 - ratio de paints casi full-frame aproximado: 0.1%
@@ -115,7 +115,7 @@ En esta familia ya no hay:
 
 ## Formato del manifiesto
 
-La primera versión nativa usa un manifiesto declarativo. La plantilla sigue describiendose en disco, pero el renderer ya no ejecuta HTML.
+La primera versión nativa usa un manifiesto declarativo. La plantilla sigue describiéndose en disco, pero el renderer ya no ejecuta HTML.
 
 Archivo de ejemplo: [06-ticker-native-v1-manifest.example.json](06-ticker-native-v1-manifest.example.json)
 
@@ -171,14 +171,14 @@ La estrategia implementada en `ticker-native-v1` sigue esta idea:
 4. mover el desplazamiento horizontal con un reloj simple controlado por `animationFps`
 5. reutilizar el mismo renderer tanto para la preview como para el overlay del mixer
 
-## Que se gana con este diseño
+## Qué se gana con este diseño
 
 - se elimina el coste fijo del `paint` offscreen de Chromium para el ticker
 - la preview del panel y la salida on-air pueden nacer del mismo renderer
 - la plantilla sigue siendo descubrible y explicable como recurso del sistema
 - la UI del operador cambia poco o nada
 
-## Que se pierde
+## Qué se pierde
 
 - el ticker ya no se disena con HTML/CSS libre
 - el estilo queda restringido a los tokens definidos por el renderer `ticker-v1`

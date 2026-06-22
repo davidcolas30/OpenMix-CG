@@ -11,7 +11,7 @@ Preview y Program mediante `osxvideosink` de GStreamer dentro de ventanas hijas
 de Electron. La idea era reducir el coste de Chromium y evitar que los frames de
 monitorización viajasen como buffers por IPC.
 
-La prueba mostro que el vídeo podía verse fluido, pero al conectar un móvil la
+La prueba mostró que el vídeo podía verse fluido, pero al conectar un móvil la
 aplicación llego a cerrarse por completo. El informe de crash de macOS indicaba
 un abort nativo en el hilo principal de Electron:
 
@@ -33,7 +33,7 @@ permanente para "hacer que se vea" si el objetivo de la prueba es mantener el
 plano de media fuera de Chromium.
 
 El crash observado queda registrado como riesgo de esta ruta, no como razón
-para abandonar automaticamente la arquitectura nativa. Si se solicita:
+para abandonar automáticamente la arquitectura nativa. Si se solicita:
 
 ```bash
 OPENMIX_BIG_MONITORS_SURFACE=native

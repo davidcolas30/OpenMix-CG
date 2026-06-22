@@ -78,7 +78,7 @@ En la práctica, si el ejemplo concreto es un CUT, el recorrido real sería este
 2. El preload traduce esa intencion a una llamada IPC.
 3. El Main Process la recibe en un handler.
 4. El handler delega en `MixerService`.
-5. `MixerService` ordena al addon nativo ejecutar la accion.
+5. `MixerService` ordena al addon nativo ejecutar la acción.
 
 ## Conceptos principales
 
@@ -92,7 +92,7 @@ Es el proceso donde corre React y donde se dibuja la interfaz. Su papel es recog
 
 ### Preload
 
-Es la capa de adaptación entre el renderer y el main. En OpenMix-CG publica una API `window.openMix` con funciones concretas como iniciar el mixer, pedir un token o suscribirse a eventos.
+Es la capa de adaptación entre el renderer y el main. En OpenMix-CG pública una API `window.openMix` con funciones concretas como iniciar el mixer, pedir un token o suscribirse a eventos.
 
 ### contextBridge
 
@@ -117,9 +117,9 @@ En OpenMix-CG, Electron IPC debe usarse casi solo para el plano de control.
 
 En las validaciones iniciales, los frames de Preview/Program podían viajar por IPC porque era la forma más simple de comprobar el mixer. Ese camino queda como ruta legacy o de diagnóstico. La ruta de rendimiento preferente para los monitores grandes usa superficies nativas de GStreamer: el renderer envía geometría, estados y acciones, pero no recibe cada frame como un mensaje IPC.
 
-Las miniaturas diagnósticas y algunas previews reducidas pueden seguir usando rutas de monitorización especificas porque no representan la salida final ni la ruta de grabación. La multiview reducida tiene ruta nativa y ruta WebRTC bajo guarda, pero tampoco debe arrastrar Preview/Program grandes a IPC crudo.
+Las miniaturas diagnósticas y algunas previews reducidas pueden seguir usando rutas de monitorización específicas porque no representan la salida final ni la ruta de grabación. La multiview reducida tiene ruta nativa y ruta WebRTC bajo guarda, pero tampoco debe arrastrar Preview/Program grandes a IPC crudo.
 
-## Flujo tipico de una accion de usuario
+## Flujo típico de una acción de usuario
 
 ### Ejemplo: pulsar CUT
 
@@ -166,7 +166,7 @@ activa, su `valve` permanece cerrada y GStreamer no presenta esa salida.
 El panel mantiene además un buffer visual de miniaturas para poder congelar la
 claqueta y escoger el frame exacto. Esas miniaturas son reducidas
 (`320x180`, 30fps) y solo se envían mientras el monitor de referencia esta
-activo. Es una excepcion diagnóstica acotada: la imagen live se presenta por
+activo. Es una excepción diagnóstica acotada: la imagen live se presenta por
 superficie nativa y el IPC solo transporta imágenes pequeñas para el análisis de
 calibración, no la ruta de media principal.
 
@@ -199,7 +199,7 @@ delay con `identity ts-offset` y mezcla ese audio con el contenedor de grabació
 El `audiomixer` con varias fuentes, mute/nivel por fuente y mezcla live de
 Program/streaming queda como extensión posterior.
 
-## Flujo tipico de un evento que vuelve hacia la interfaz
+## Flujo típico de un evento que vuelve hacia la interfaz
 
 ### Ejemplo: actualizar el monitor de Preview
 
@@ -223,4 +223,4 @@ Esta arquitectura no es un detalle accidental. Resuelve varios problemas a la ve
 
 Si hubiera que resumir este módulo en una frase, una buena idea sería esta:
 
-> Electron aporta la estructura por capas; el preload expone una API segura y tipada; la UI decide que hacer y el Main Process ejecuta las acciones privilegiadas.
+> Electron aporta la estructura por capas; el preload expone una API segura y tipada; la UI decide qué hacer y el Main Process ejecuta las acciones privilegiadas.

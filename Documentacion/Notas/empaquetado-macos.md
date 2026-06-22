@@ -45,13 +45,13 @@ El resultado queda en:
 dist/mac-arm64/OpenMix-CG.app
 ```
 
-Generar un `.dmg` de prueba cuando la carpeta `.app` ya este validada:
+Generar un `.dmg` de prueba cuando la carpeta `.app` ya esté validada:
 
 ```bash
 pnpm run package:mac:dmg
 ```
 
-## Que se empaqueta
+## Qué se empaqueta
 
 - `out/main`, `out/preload` y `out/renderer`, generados por `electron-vite`.
 - `src/native/build/Release/gstreamer_addon.node`, copiado como
@@ -82,7 +82,7 @@ La prueba local confirma:
 
 - No es una app autocontenida: depende de GStreamer/Homebrew externo.
 - La build validada es `darwin arm64`; no valida Intel ni universal.
-- La firma es ad-hoc y `notarize=false`. Para distribuir fuera de pruebas hara
+- La firma es ad-hoc y `notarize=false`. Para distribuir fuera de pruebas hará
   falta firma de desarrollador y notarizacion.
 - Se usa `com.apple.security.cs.disable-library-validation` para permitir que
   la app ad-hoc cargue Electron Framework y dylibs externas de GStreamer. Es
@@ -94,7 +94,7 @@ La prueba local confirma:
 
 ## Distribución autocontenida
 
-La evolución natural del despliegue consistiria en incluir el runtime de
+La evolución natural del despliegue consistiría en incluir el runtime de
 GStreamer dentro del bundle o en un instalador propio. Ese empaquetado exige
 resolver librerías, plugins, `gst-plugin-scanner`, rutas internas y
 firma/notarizacion con más cuidado. No debe mezclarse con la validación

@@ -12,7 +12,7 @@ Las mediciones de validación separan dos comportamientos distintos:
 - los rótulos con animaciones cortas de entrada y salida consumen poco y, una vez quietos, casi no añaden coste sostenido
 - las plantillas con movimiento continuo, en especial el ticker, mantienen un consumo estructural alto incluso sin el mixer iniciado
 
-La instrumentacion del `paint` offscreen ha aportado una conclusion importante:
+La instrumentación del `paint` offscreen ha aportado una conclusión importante:
 
 - `averageDirtyCoveragePercent` aproximado: 4.2%
 - `fullFramePaintRatePercent` aproximado: 0.1%
@@ -26,12 +26,12 @@ Eso descarta que el cuello principal provenga de invalidaciones full-frame. El c
 Ventajas:
 
 - un solo formato de plantilla
-- máxima flexibilidad visual para el disenador
+- máxima flexibilidad visual para el diseñador
 - continuidad total con la Fase 4 preview-first
 
 Problemas:
 
-- las plantillas con movimiento continuo seguirian pagando el coste estructural de Chromium offscreen
+- las plantillas con movimiento continuo seguirían pagando el coste estructural de Chromium offscreen
 - el ticker no tendría un camino claro para escalar sin seguir consumiendo CPU en reposición continua
 
 ### 2. Mover todo el módulo de grafismo a render nativo
@@ -53,7 +53,7 @@ Ventajas:
 
 - conserva HTML/CSS/JS para plantillas ricas o de animación corta
 - saca del motor offscreen solo las familias de overlays con movimiento continuo
-- encaja con las mediciones reales del proyecto en vez de reescribir todo el módulo por intuicion
+- encaja con las mediciones reales del proyecto en vez de reescribir todo el módulo por intuición
 
 Problema:
 
@@ -100,13 +100,13 @@ Queda fuera en esta primera versión:
 
 - aparece un nuevo `format: native` en el ecosistema de plantillas
 - el motor de grafismo necesitara un dispatcher por formato o `rendererId`
-- la carpeta de la plantilla puede seguir existiendo en `resources/graphics-templates`, pero ya no se interpretara con `template.html`
-- la ruta de preview de la pestaña de grafismos y la ruta on-air podran compartir el mismo renderer nativo para el ticker
+- la carpeta de la plantilla puede seguir existiendo en `resources/graphics-templates`, pero ya no se interpretará con `template.html`
+- la ruta de preview de la pestaña de grafismos y la ruta on-air podrán compartir el mismo renderer nativo para el ticker
 
 ## Consecuencias operativas
 
-- el operador seguira viendo un ticker como una plantilla más de la pila
-- el disenador ya no editara el ticker como HTML/CSS/JS libre, sino como una plantilla declarativa con estilo parametrizado
+- el operador seguirá viendo un ticker como una plantilla más de la pila
+- el diseñador ya no editará el ticker como HTML/CSS/JS libre, sino como una plantilla declarativa con estilo parametrizado
 - el coste de CPU de los tickers debería depender sobre todo del renderer nativo y no de Chromium offscreen
 
 ## Regla práctica

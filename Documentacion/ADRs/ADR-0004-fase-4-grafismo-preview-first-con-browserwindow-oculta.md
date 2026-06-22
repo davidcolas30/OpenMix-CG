@@ -72,7 +72,7 @@ La Fase 4 arranca con estas decisiones concretas:
 - motor de grafismo basado en `BrowserWindow` oculta con render offscreen
 - caso guia inicial: plantilla `lower third`
 - formato principal en esta iteración: HTML/CSS/JS
-- control a traves de IPC tipado `graphics:*`
+- control a través de IPC tipado `graphics:*`
 - alcance limitado a carga de plantilla, actualización de campos y acciones `show`/`hide`
 - la composición real hacia el mixer se deja para el siguiente bloque
 
@@ -100,7 +100,7 @@ Con esta decisión, el módulo de grafismo puede crecer de manera ordenada:
 
 - la API de grafismo se puede diseñar sin depender todavía del pipeline nativo
 - las plantillas viven como recursos independientes y no como componentes React ad hoc
-- el lower third sirve como caso mínimo útil para probar edicion y animaciones
+- el lower third sirve como caso mínimo útil para probar edición y animaciones
 - el siguiente bloque de Fase 4 tendrá que resolver el envío de frames RGBA al mixer
 
 ## Regla práctica

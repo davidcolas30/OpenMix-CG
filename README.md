@@ -136,4 +136,4 @@ Líneas de evolución principales:
 
 ## Licencia
 
-Este proyecto se publica bajo licencia [MIT](LICENSE).
+Este proyecto se pública bajo licencia [MIT](LICENSE).

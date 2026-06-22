@@ -17,7 +17,7 @@ OpenMix-CG se apoya en cuatro bloques principales:
 - **Renderer React**: la interfaz que usa el realizador.
 - **Preload + IPC**: la capa segura que conecta la UI con el proceso principal.
 - **Electron Main Process**: el orquestador que arranca servicios, valida límites del sistema y coordina los módulos.
-- **Backend multimedia nativo**: GStreamer y WebRTC ejecutados a traves del addon nativo.
+- **Backend multimedia nativo**: GStreamer y WebRTC ejecutados a través del addon nativo.
 
 ## Mapa de módulos
 
@@ -42,7 +42,7 @@ flowchart LR
         MainProc[Electron Main]
         Services[Servicios Main\nMixer, Sources, Graphics, Output, Shortcuts]
         HTTPS[HTTPS local]
-        WSS[WSS de senalizacion]
+        WSS[WSS de señalización]
         MainProc --> Services
         Services --> HTTPS
         Services --> WSS
@@ -51,7 +51,7 @@ flowchart LR
     subgraph Media[Plano de media nativo]
         direction TB
         NativeAddon[Addon N-API GStreamer]
-        Ingest[webrtcbin y videos locales]
+        Ingest[webrtcbin y vídeos locales]
         Sync[Sync Buffer RTP/NTP]
         GraphicsOverlay[Overlay grafismo alpha]
         Mixer[Mixer GStreamer]
@@ -63,10 +63,10 @@ flowchart LR
         Mixer --> MediaOutputs
     end
 
-    subgraph Mobile[Cliente movil]
+    subgraph Mobile[Cliente móvil]
         direction TB
-        QR[QR de conexion]
-        Browser[Navegador movil]
+        QR[QR de conexión]
+        Browser[Navegador móvil]
         QR -->|abre enlace| Browser
     end
 
@@ -77,7 +77,7 @@ flowchart LR
     Browser -->|carga /cam| HTTPS
     Browser -->|media WebRTC| Ingest
     WSS -->|join, offer e ICE| Services
-    MediaOutputs -->|handles, geometria y estado| MainProc
+    MediaOutputs -->|handles, geometría y estado| MainProc
     MainProc -->|estado y control| React
 
 
@@ -137,13 +137,13 @@ sequenceDiagram
     participant UI as Renderer
     participant M as Main Process
     participant H as HTTPS + WSS
-    participant MB as Navegador movil
+    participant MB as Navegador móvil
     participant W as webrtcbin
     participant S as Sync Buffer
     participant G as Mixer
     participant O as Monitores y REC
 
-    R->>UI: Anadir camara
+    R->>UI: Añadir cámara
     UI->>M: createConnectionToken()
     M-->>UI: URL + token
     UI-->>R: Muestra QR
@@ -158,8 +158,8 @@ sequenceDiagram
     W->>S: Decodificar y aportar PTS/RTP/NTP
     S->>G: Inyectar slot retimeado
     G->>O: Program, Preview, multiview y REC nativo
-    O-->>M: Handles, estado y diagnostico reducido
-    M-->>UI: Estado, layout y monitorizacion
+    O-->>M: Handles, estado y diagnóstico reducido
+    M-->>UI: Estado, layout y monitorización
 ```
 
 ## Flujo de datos del mixer hacia la interfaz

@@ -21,7 +21,7 @@ flowchart LR
         PVW[Preview]
         CUT[CUT]
         PGM[Program]
-        PVW -->|preparacion| CUT
+        PVW -->|preparación| CUT
         CUT -->|conmutacion| PGM
     end
 
@@ -37,9 +37,9 @@ flowchart LR
         Output -->|salida final| Signal
     end
 
-    Source -->|seleccion| PVW
-    PGM -->|video base| Output
-    Overlay -->|superposicion| Output
+    Source -->|selección| PVW
+    PGM -->|vídeo base| Output
+    Overlay -->|superposición| Output
 
 
     classDef ui fill:#111827,stroke:#64748b,color:#ffffff,stroke-width:1.5px;
@@ -70,7 +70,7 @@ Es cualquier señal de entrada disponible para el realizador. En OpenMix-CG pued
 
 ### Preview (PVW)
 
-Es el monitor donde el realizador prepara la siguiente fuente antes de ponerla al aire. En OpenMix-CG existe simultaneamente a Program; internamente puede usar compositor, selector o ruta nativa según el modo de monitorización.
+Es el monitor donde el realizador prepara la siguiente fuente antes de ponerla al aire. En OpenMix-CG existe simultáneamente a Program; internamente puede usar compositor, selector o ruta nativa según el modo de monitorización.
 
 ### Program (PGM)
 
@@ -102,7 +102,7 @@ El motor de grafismo ya forma parte del MVP, así que estos términos son vocabu
 
 ### Rótulo
 
-Nombre generico de un elemento gráfico con texto superpuesto al vídeo. Puede identificar a una persona, mostrar información contextual o presentar un dato en pantalla.
+Nombre genérico de un elemento gráfico con texto superpuesto al vídeo. Puede identificar a una persona, mostrar información contextual o presentar un dato en pantalla.
 
 ### Faldón
 
@@ -110,7 +110,7 @@ Tipo de rótulo colocado normalmente en la parte inferior de la imagen. En reali
 
 ### Lower third
 
-Termino anglosajon equivalente, en muchos contextos, a un faldon de identificacion situado en el tercio inferior de la pantalla. OpenMix-CG lo usa como referencia de plantilla básica para el módulo de grafismo.
+Término anglosajón equivalente, en muchos contextos, a un faldón de identificación situado en el tercio inferior de la pantalla. OpenMix-CG lo usa como referencia de plantilla básica para el módulo de grafismo.
 
 ### Mosca
 

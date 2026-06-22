@@ -28,7 +28,7 @@ OPENMIX_MONITOR_RENDERER=ab-compositor
 ```
 
 Este modo mantiene el resultado final de Preview/Program saliendo de
-`compositor`, para conservar grafismos y transiciones, pero cambia como entra el
+`compositor`, para conservar grafismos y transiciones, pero cambia cómo entra el
 vídeo base:
 
 - Program usa un selector primario para la fuente al aire.
@@ -58,4 +58,4 @@ vídeo base:
 
 Esta decisión mantiene la regla de separación del proyecto: los frames de vídeo
 no vuelven a Electron IPC. La UI sigue enviando intenciones de realización y el
-addon nativo decide como materializarlas en GStreamer.
+addon nativo decide cómo materializarlas en GStreamer.

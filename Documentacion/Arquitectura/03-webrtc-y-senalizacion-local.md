@@ -2,7 +2,7 @@
 
 ## Para qué sirve este módulo
 
-Este módulo explica como una cámara móvil llega al mixer sin instalar una app nativa adicional, usando QR, HTTPS, WebSocket y WebRTC.
+Este módulo explica cómo una cámara móvil llega al mixer sin instalar una app nativa adicional, usando QR, HTTPS, WebSocket y WebRTC.
 
 Es el bloque que convierte el móvil en una fuente de vídeo integrada dentro de OpenMix-CG.
 
@@ -26,7 +26,7 @@ sequenceDiagram
     participant Main as Main Process
     participant HTTP as HTTPS local
     participant WS as WSS
-    participant Mobile as Navegador movil
+    participant Mobile as Navegador móvil
     participant Bridge as WebRTC bridge
     participant Peer as webrtcbin
     participant Sync as Sync Buffer Manager
@@ -47,7 +47,7 @@ sequenceDiagram
     WS->>Bridge: reenviar ICE
     Bridge->>Peer: addRemoteIceCandidate()
     Mobile-->>Peer: Media WebRTC
-    Peer->>Sync: video decodificado con PTS RTP
+    Peer->>Sync: vídeo decodificado con PTS RTP
     Sync->>Mixer: frames retimeados con delay compensatorio
     Mixer-->>Main: Preview y multiview
     Main-->>UI: Estado, handles y superficies de monitor
@@ -165,7 +165,7 @@ Ese mensaje no transporta vídeo. Solo cambia parámetros del `RTCRtpSender` del
 
 La captura del móvil puede estar en 1920x1080, pero lo que llega realmente al receptor lo indica la estadística `send=...`. Para que una grabación 1080p sea real, no basta con `capture=1920x1080`: durante REC también debe estabilizarse `send=1920x1080`.
 
-## Sincronizacion multicámara
+## Sincronización multicámara
 
 El Sync Buffer Manager se coloca después de recibir y decodificar WebRTC, pero antes de que la señal entre en las ramas de monitor y REC. Esa posición es importante:
 
@@ -200,7 +200,7 @@ Con ese offset, el receptor puede retrasar la cámara que llega antes para que e
 - Control `video-quality` para distinguir monitorización adaptativa y REC 1080p.
 - Sync Buffer Manager posterior a decode y anterior al mixer.
 - Captura de referencias RTP/NTP desde `rtpjitterbuffer`.
-- Aplicacion operativa de delay compensatorio NTP con techo `65ms`,
+- Aplicación operativa de delay compensatorio NTP con techo `65ms`,
   `OPENMIX_SYNC_BUFFER_RETIMER=on` y `OPENMIX_SYNC_BUFFER_CLOCK=off`.
 - Validación manual de dos cámaras móviles en el perfil local con
   Preview/Program nativos, multiview nativa reducida y 1080p cuando el emisor lo

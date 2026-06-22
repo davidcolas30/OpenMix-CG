@@ -30,7 +30,7 @@ flowchart LR
         MainProc[Electron Main]
         Services[Servicios Main\nMixer, Sources, Graphics, Output, Shortcuts]
         HTTPS[HTTPS local]
-        WSS[WSS de senalizacion]
+        WSS[WSS de señalización]
         MainProc --> Services
         Services --> HTTPS
         Services --> WSS
@@ -39,7 +39,7 @@ flowchart LR
     subgraph Media[Plano de media nativo]
         direction TB
         NativeAddon[Addon N-API GStreamer]
-        Ingest[webrtcbin y videos locales]
+        Ingest[webrtcbin y vídeos locales]
         Sync[Sync Buffer RTP/NTP]
         GraphicsOverlay[Overlay grafismo alpha]
         Mixer[Mixer GStreamer]
@@ -51,10 +51,10 @@ flowchart LR
         Mixer --> MediaOutputs
     end
 
-    subgraph Mobile[Cliente movil]
+    subgraph Mobile[Cliente móvil]
         direction TB
-        QR[QR de conexion]
-        Browser[Navegador movil]
+        QR[QR de conexión]
+        Browser[Navegador móvil]
         QR -->|abre enlace| Browser
     end
 
@@ -65,7 +65,7 @@ flowchart LR
     Browser -->|carga /cam| HTTPS
     Browser -->|media WebRTC| Ingest
     WSS -->|join, offer e ICE| Services
-    MediaOutputs -->|handles, geometria y estado| MainProc
+    MediaOutputs -->|handles, geometría y estado| MainProc
     MainProc -->|estado y control| React
 
 
@@ -96,7 +96,7 @@ flowchart LR
 
 Documento recomendado para entender cómo encajan todos los bloques antes de entrar en cada tecnología.
 
-- Archivo: [Arquitectura/00-vision-general-y-flujo-de-datos.md](Arquitectura/00-vision-general-y-flujo-de-datos.md)
+- Archivo: [Arquitectura/00. Visión general y flujo de datos](Arquitectura/00-vision-general-y-flujo-de-datos.md)
 - Contiene: arquitectura global, bloques principales y recorrido extremo a extremo de los datos.
 
 ### Módulo 1. Electron e IPC
@@ -143,7 +143,7 @@ Documento recomendado para entender el addon nativo, el pipeline del mixer y có
 
 Documento recomendado para entender el flujo QR -> móvil -> WebSocket -> WebRTC -> mixer.
 
-- Archivo: [Arquitectura/03-webrtc-y-señalización-local.md](Arquitectura/03-webrtc-y-senalizacion-local.md)
+- Archivo: [Arquitectura/03. WebRTC y señalización local](Arquitectura/03-webrtc-y-senalizacion-local.md)
 - Conceptos cubiertos:
   - webrtcbin
   - WebSocket de señalización
@@ -183,7 +183,7 @@ Documento recomendado para traducir la jerga de realización al funcionamiento c
 
 Documento recomendado para entender cómo se cargan plantillas de grafismo, cómo se editan sus campos y cómo se integran con el mixer.
 
-- Archivo: [Arquitectura/05-grafismo-y-rótulos.md](Arquitectura/05-grafismo-y-rotulos.md)
+- Archivo: [Arquitectura/05. Grafismo y rótulos](Arquitectura/05-grafismo-y-rotulos.md)
 - Conceptos cubiertos:
   - Separación diseño/contenido
   - Plantilla HTML/CSS/JS
@@ -201,7 +201,7 @@ Documento recomendado para entender cómo se cargan plantillas de grafismo, cóm
 
 Documento recomendado para entender por qué OpenMix-CG no necesita mover todo el grafismo a render nativo, sino abrir una segunda familia de plantillas para overlays continuos como el ticker, ya materializada en una primera implementación `ticker-v1`.
 
-- Archivo: [Arquitectura/06-grafismo-nativo-y-modelo-híbrido.md](Arquitectura/06-grafismo-nativo-y-modelo-hibrido.md)
+- Archivo: [Arquitectura/06. Grafismo nativo y modelo híbrido](Arquitectura/06-grafismo-nativo-y-modelo-hibrido.md)
 - Conceptos cubiertos:
   - Modelo híbrido
   - `format: native`

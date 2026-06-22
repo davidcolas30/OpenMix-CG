@@ -48,7 +48,7 @@ Para evitar repetir el fallo:
 
 5. Al terminar `animateOut()`, la plantilla vuelve a un estado estable (`pre-enter` o `hidden`) y espera varios `requestAnimationFrame` antes de considerarse asentada.
 6. Para el slot GFX se usa un estado `preparePreview()` separado: el grafismo puede verse armado en la multiview sin que `isVisible` pase a `true` ni se mezcle sobre Preview/Program.
-7. El slot GFX se modela como `stackPreviewActive`: puede mantener animaciones internas vivas aunque el grafismo este bajado.
+7. El slot GFX se modela como `stackPreviewActive`: puede mantener animaciones internas vivas aunque el grafismo esté bajado.
 8. Las operaciones `show`/`hide` se serializan en el servicio para evitar que dos entradas lanzadas seguidas compartan frames intermedios o cache de composición.
 
 ## Consecuencias
@@ -56,7 +56,7 @@ Para evitar repetir el fallo:
 - Las entradas dejan de depender de que Chromium offscreen entregue los paints en un orden ideal.
 - Un frame viejo en posición final ya no puede desbloquear la salida.
 - El slot GFX puede mostrar los grafismos cargados aunque estén bajados realmente.
-- Un ticker puede seguir desplazandose en el slot GFX aunque no este al aire.
+- Un ticker puede seguir desplazándose en el slot GFX aunque no esté al aire.
 - Si el realizador sube varios grafismos seguidos, cada entrada espera a que la anterior haya dejado el pipeline en un estado coherente.
 - El modelo sigue siendo trazable: permite explicar la diferencia entre plano de control, frame offscreen, `appsrc`, composición nativa y estado operativo del grafismo.
 

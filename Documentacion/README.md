@@ -7,7 +7,7 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
 ## Cómo leer esta documentación
 
 - [Glosario.md](Glosario.md): índice de conceptos técnicos y audiovisuales.
-- [Instalacion.md](Instalacion.md): preparación del entorno, ejecución en
+- [Instalación.md](Instalacion.md): preparación del entorno, ejecución en
   desarrollo y empaquetado macOS de prueba.
 - [Manual-usuario.md](Manual-usuario.md): guía de uso de la aplicación desde el
   punto de vista del operador.
@@ -22,7 +22,7 @@ empaquetado para que cada archivo tenga una responsabilidad clara.
 - [Notas/empaquetado-macos.md](Notas/empaquetado-macos.md):
   validación del empaquetado macOS con GStreamer externo.
 - [Notas/gstreamer-detalles-operativos.md](Notas/gstreamer-detalles-operativos.md):
-  detalles de diagnostico, rendimiento y compatibilidad del pipeline.
+  detalles de diagnóstico, rendimiento y compatibilidad del pipeline.
 
 ## Estado de la versión
 

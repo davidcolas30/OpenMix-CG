@@ -68,10 +68,10 @@ Las mejoras más naturales para evolucionar el proyecto son:
 
 ## Documentación relacionada
 
-- [Instalacion.md](Instalacion.md): preparación del entorno y empaquetado de
+- [Instalación.md](Instalacion.md): preparación del entorno y empaquetado de
   prueba.
 - [Manual-usuario.md](Manual-usuario.md): guía de operación de la aplicación.
-- [Arquitectura/00-vision-general-y-flujo-de-datos.md](Arquitectura/00-vision-general-y-flujo-de-datos.md):
+- [Arquitectura/00. Visión general y flujo de datos](Arquitectura/00-vision-general-y-flujo-de-datos.md):
   visión general de módulos y flujo de datos.
 - [Arquitectura/02-gstreamer-y-mixer.md](Arquitectura/02-gstreamer-y-mixer.md):
   detalles del mixer, sincronización, monitores y grabación.

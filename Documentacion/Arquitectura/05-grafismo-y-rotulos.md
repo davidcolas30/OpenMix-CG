@@ -2,7 +2,7 @@
 
 ## Para qué sirve este módulo
 
-Este módulo explica como OpenMix-CG incorpora grafismo editable sin convertir la interfaz principal en un motor de animación improvisado.
+Este módulo explica cómo OpenMix-CG incorpora grafismo editable sin convertir la interfaz principal en un motor de animación improvisado.
 
 La idea no es dibujar overlays a mano desde React, sino cargar plantillas preparadas por un diseñador y permitir que el realizador edite solo el contenido necesario desde la aplicación.
 
@@ -140,7 +140,7 @@ El estado implementado del módulo es:
   plantilla HTML se renderiza como una capa independiente y `GraphicsService`
   compone la pila por alpha antes de empujar el overlay a GStreamer.
 - El panel de grafismo permite instanciar plantillas, editar campos, posicionarlas y elegir salida: Preview, Program o ambas.
-- El slot GFX muestra el grafismo preparado aunque no este al aire, para que el operador no trabaje a ciegas.
+- El slot GFX muestra el grafismo preparado aunque no esté al aire, para que el operador no trabaje a ciegas.
 - El Main Process empuja frames con alpha hacia GStreamer mediante `appsrc` de grafismo.
 - El addon nativo compone esos frames sobre Preview/Program dentro del pipeline.
 - Los monitores nativos necesitan `OPENMIX_GRAPHICS_OVERLAY_PUMP=active` para
@@ -149,7 +149,7 @@ El estado implementado del módulo es:
 - Existe un modelo híbrido: HTML se mantiene para plantillas ricas o casi estáticas, y `format: native` queda disponible para overlays continuos como el ticker.
 - La escena HTML agregada por iframes queda como optimización experimental bajo
   `OPENMIX_GRAPHICS_SCENE_RENDERER=on`: reducía ventanas offscreen, pero en
-  prueba real no preservo bien la transparencia entre mosca y reloj simultaneos.
+  prueba real no preservó bien la transparencia entre mosca y reloj simultáneos.
 - La optimización profunda pendiente es reducir copias de la ruta HTML mediante
   una línea experimental de `useSharedTexture`/`IOSurface`; ver `ADR-0009`.
 
@@ -233,13 +233,13 @@ Si hubiera que resumir este módulo en una frase, una formulación útil sería 
 
 ## Nota operativa sobre animaciones offscreen
 
-Las plantillas renderizadas con Chromium offscreen no deben asumir que los paints llegan siempre en el mismo orden que en un navegador visible. En las pruebas de mosca, ticker y reloj se detecto que un frame antiguo en estado final podía aparecer justo antes de la animación de entrada.
+Las plantillas renderizadas con Chromium offscreen no deben asumir que los paints llegan siempre en el mismo orden que en un navegador visible. En las pruebas de mosca, ticker y reloj se detectó que un frame antiguo en estado final podía aparecer justo antes de la animación de entrada.
 
 La solución adoptada queda documentada en [ADR-0006](../ADRs/ADR-0006-estados-de-grafismo-offscreen-y-slot-gfx.md): separar el estado al aire, el estado `pre-enter` y el estado de previsualización del slot GFX.
 
 ## Evolución híbrida documentada
 
-La evolución híbrida del módulo queda descrita en [06-grafismo-nativo-y-modelo-híbrido.md](06-grafismo-nativo-y-modelo-hibrido.md).
+La evolución híbrida del módulo queda descrita en [06. Grafismo nativo y modelo híbrido](06-grafismo-nativo-y-modelo-hibrido.md).
 
 Ese documento amplía el modelo con una propuesta concreta para mantener HTML
 donde aporta flexibilidad y abrir un `format: native` para familias de overlays
